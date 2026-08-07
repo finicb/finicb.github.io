@@ -1,0 +1,20 @@
+/* 修复手机端文章列表文字溢出 */  
+@media (max-width: 768px) {  
+  .index-card .card-text,  
+  .index-card .content,  
+  .index-card p,  
+  .index-card .post-preview {  
+    word-break: break-all !important;  
+    overflow-wrap: break-word !important;  
+    white-space: normal !important;  
+    -webkit-line-clamp: unset !important;  
+    max-height: none !important;  
+  }  
+    
+  /* 修复代码块/长单词换行 */  
+  .index-card code,  
+  .index-card pre {  
+    word-break: break-all !important;  
+    white-space: pre-wrap !important;  
+  }  
+}  
