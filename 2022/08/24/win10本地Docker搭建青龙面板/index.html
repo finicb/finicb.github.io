@@ -22,27 +22,27 @@
     <meta name="description" content="前言win10本地Docker搭建青龙面板，不用安装虚拟机，本教程以青龙2.10.13版本为例 开始1，电脑开启了VT，任务管理器，性能，查看有没有开启，没开启自行百度查找开启方法 2，打开【Hyper-V】，【适用于linux的windows子系统】和【虚拟机平台】，控制面板，程序和功能，启用或关闭Windows功能，如下图勾选，然后确定会让你重启，重启一下 3，如果电脑没有【Hyper-V】，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="win10本地Docker搭建青龙面板">
-<meta property="og:url" content="http://example.com/2022/08/24/win10%E6%9C%AC%E5%9C%B0Docker%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/index.html">
+<meta property="og:url" content="https://finicb.github.io/2022/08/24/win10%E6%9C%AC%E5%9C%B0Docker%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/index.html">
 <meta property="og:site_name" content="搁浅的旧时光">
 <meta property="og:description" content="前言win10本地Docker搭建青龙面板，不用安装虚拟机，本教程以青龙2.10.13版本为例 开始1，电脑开启了VT，任务管理器，性能，查看有没有开启，没开启自行百度查找开启方法 2，打开【Hyper-V】，【适用于linux的windows子系统】和【虚拟机平台】，控制面板，程序和功能，启用或关闭Windows功能，如下图勾选，然后确定会让你重启，重启一下 3，如果电脑没有【Hyper-V】，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/af7782754085452dbec549ff6c7d58ce.png">
-<meta property="og:image" content="http://example.com/images/7066959cf4204346a80f27e85802e14d.png">
-<meta property="og:image" content="http://example.com/images/ad8c3022413045f8960c667c70c535c4.png">
-<meta property="og:image" content="http://example.com/images/9ec4464ecf5a4bca8334fb5cd9d89691.png">
-<meta property="og:image" content="http://example.com/images/01aa58269ea2feb0b93cd8439303c96b.png">
-<meta property="og:image" content="http://example.com/images/7ab609fe5b5f4efc813a94c0d405ff0d.png">
-<meta property="og:image" content="http://example.com/images/4a67bd533f38475396fe4ab0385f5250.png">
-<meta property="og:image" content="http://example.com/images/229641f27e644918b1fe100978be263a.png">
-<meta property="og:image" content="http://example.com/images/1194c477782542208e6a49fee935164c.png">
-<meta property="og:image" content="http://example.com/images/987d8eaa26e8485c9122c2f63113c845.jpeg.png">
-<meta property="og:image" content="http://example.com/images/2a9f1ea9fc9542efaf302fe4b4e983a6.png">
-<meta property="og:image" content="http://example.com/images/c22b153583374a33b759df5a0c189e14.png">
+<meta property="og:image" content="https://finicb.github.io/images/af7782754085452dbec549ff6c7d58ce.png">
+<meta property="og:image" content="https://finicb.github.io/images/7066959cf4204346a80f27e85802e14d.png">
+<meta property="og:image" content="https://finicb.github.io/images/ad8c3022413045f8960c667c70c535c4.png">
+<meta property="og:image" content="https://finicb.github.io/images/9ec4464ecf5a4bca8334fb5cd9d89691.png">
+<meta property="og:image" content="https://finicb.github.io/images/01aa58269ea2feb0b93cd8439303c96b.png">
+<meta property="og:image" content="https://finicb.github.io/images/7ab609fe5b5f4efc813a94c0d405ff0d.png">
+<meta property="og:image" content="https://finicb.github.io/images/4a67bd533f38475396fe4ab0385f5250.png">
+<meta property="og:image" content="https://finicb.github.io/images/229641f27e644918b1fe100978be263a.png">
+<meta property="og:image" content="https://finicb.github.io/images/1194c477782542208e6a49fee935164c.png">
+<meta property="og:image" content="https://finicb.github.io/images/987d8eaa26e8485c9122c2f63113c845.jpeg.png">
+<meta property="og:image" content="https://finicb.github.io/images/2a9f1ea9fc9542efaf302fe4b4e983a6.png">
+<meta property="og:image" content="https://finicb.github.io/images/c22b153583374a33b759df5a0c189e14.png">
 <meta property="article:published_time" content="2022-08-24T14:52:43.000Z">
 <meta property="article:modified_time" content="2026-08-06T19:04:29.949Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/af7782754085452dbec549ff6c7d58ce.png">
+<meta name="twitter:image" content="https://finicb.github.io/images/af7782754085452dbec549ff6c7d58ce.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -93,7 +93,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"finicb.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -439,7 +439,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>win10本地Docker搭建青龙面板</div>
-      <div>http://example.com/2022/08/24/win10本地Docker搭建青龙面板/</div>
+      <div>https://finicb.github.io/2022/08/24/win10本地Docker搭建青龙面板/</div>
     </div>
     <div class="license-meta">
       
