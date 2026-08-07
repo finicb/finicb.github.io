@@ -1,20 +1,19 @@
-/* 修复手机端文章列表文字溢出 */  
 @media (max-width: 768px) {  
-  .index-card .card-text,  
-  .index-card .content,  
-  .index-card p,  
-  .index-card .post-preview {  
-    word-break: break-all !important;  
-    overflow-wrap: break-word !important;  
-    white-space: normal !important;  
-    -webkit-line-clamp: unset !important;  
-    max-height: none !important;  
+  /* 隐藏导航栏背景和品牌文字 */  
+  header.navbar {  
+    background: transparent !important;  
+    box-shadow: none !important;  
   }  
-    
-  /* 修复代码块/长单词换行 */  
-  .index-card code,  
-  .index-card pre {  
-    word-break: break-all !important;  
-    white-space: pre-wrap !important;  
+  .navbar-brand {  
+    display: none !important;  
+  }  
+  /* 只保留三横杠按钮可见 */  
+  .navbar-toggler {  
+    position: fixed;  
+    top: 10px;  
+    right: 10px;  
+    z-index: 9999;  
+    background: rgba(0,0,0,0.3) !important;  
+    border-radius: 4px;  
   }  
 }  
