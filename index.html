@@ -1,225 +1,843 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
 <meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Hexo",
-  "alternateName": [
-    "example.com"
-  ],
-  "url": "http://example.com/"
-}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
-    (() => {
-      
-    const saveToLocal = {
-      set: (key, value, ttl) => {
-        const data = { value }
-
-        if (ttl != null) {
-          data.expiry = Date.now() + ttl * 86400000
-        }
-
-        localStorage.setItem(key, JSON.stringify(data))
-      },
-      get: key => {
-        const itemStr = localStorage.getItem(key)
-        if (!itemStr) return
-
-        try {
-          const data = JSON.parse(itemStr)
-
-          if (data.expiry && Date.now() > data.expiry) {
-            localStorage.removeItem(key)
-            return
-          }
-
-          return data.value
-        } catch {
-          localStorage.removeItem(key)
-        }
-      }
-    }
-
-    const scriptCache = new Map()
-    const cssCache = new Map()
-    window.btf = {
-      saveToLocal,
-      getScript: (url, attr = {}) => {
-        if (scriptCache.has(url)) {
-          return scriptCache.get(url)
-        }
-
-        const promise = new Promise((resolve, reject) => {
-          const script = document.createElement('script')
-
-          script.src = url
-          script.async = true
-
-          for (const key in attr) {
-            script.setAttribute(key, attr[key])
-          }
-
-          script.onload = resolve
-          script.onerror = reject
-
-          document.head.appendChild(script)
-        })
-
-        scriptCache.set(url, promise)
-
-        return promise
-      },
-      getCSS: (url, id) => {
-        if (cssCache.has(url)) {
-          return cssCache.get(url)
-        }
-
-        const promise = new Promise((resolve, reject) => {
-          const link = document.createElement('link')
-
-          link.rel = 'stylesheet'
-          link.href = url
-
-          if (id) {
-            link.id = id
-          }
-
-          link.onload = resolve
-          link.onerror = reject
-
-          document.head.appendChild(link)
-        })
-
-        cssCache.set(url, promise)
-
-        return promise
-      },
-      addGlobalFn: (key, fn, name = false, parent = window) => {
-        if (!false && key.startsWith('pjax')) return
-        const globalFn = parent.globalFn || {}
-        globalFn[key] = globalFn[key] || {}
-        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
-        parent.globalFn = globalFn
-      }
-    }
+<meta name="twitter:card" content="summary_large_image">
   
-      
-      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
-      const activateDarkMode = () => {
-        document.documentElement.dataset.theme = 'dark'
-        if (metaThemeColor !== null) {
-          metaThemeColor.setAttribute('content', '#0d0d0d')
-        }
-      }
-      const activateLightMode = () => {
-        document.documentElement.dataset.theme = 'light'
-        if (metaThemeColor !== null) {
-          metaThemeColor.setAttribute('content', '#ffffff')
-        }
-      }
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Hexo</title>
 
-      btf.activateDarkMode = activateDarkMode
-      btf.activateLightMode = activateLightMode
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-      const theme = saveToLocal.get('theme')
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/daziyanse.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
     
-          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+  
+
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>闲人</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>Archives</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>About</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/links/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>Links</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>Search</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="Light"
+               data-label-dark="Dark">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">Dark</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="少而不学 老而无识"></span>
+          
+        </div>
+
+        
+      </div>
+
       
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
-      }
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
     
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<h1 style="display: none">Hexo</h1>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2026/08/07/%E5%A5%BD%E4%BA%8B%E5%A5%BD%E5%93%88%E5%A5%BD/" target="_self">
+          好事好哈好
+        </a>
+      </h2>
+
       
-    const detectApple = () => {
-      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
-        document.documentElement.classList.add('apple')
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/08/07/%E5%A5%BD%E4%BA%8B%E5%A5%BD%E5%93%88%E5%A5%BD/" target="_self">
+        <div>
+          
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-08-07 09:54" pubdate>
+              2026-08-07
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/08/24/win10%E6%9C%AC%E5%9C%B0Docker%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/" target="_self">
+          win10本地Docker搭建青龙面板
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/24/win10%E6%9C%AC%E5%9C%B0Docker%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/" target="_self">
+        <div>
+          前言win10本地Docker搭建青龙面板，不用安装虚拟机，本教程以青龙2.10.13版本为例 开始1，电脑开启了VT，任务管理器，性能，查看有没有开启，没开启自行百度查找开启方法 2，打开【Hyper-V】，【适用于linux的windows子系统】和【虚拟机平台】，控制面板，程序和功能，启用或关闭Windows功能，如下图勾选，然后确定会让你重启，重启一下 3，如果电脑没有【Hyper-V】，
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-24 22:52" pubdate>
+              2022-08-24
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/08/12/%E5%82%BB%E5%A6%9E%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%EF%BC%8C%E5%AF%B9%E6%8E%A5%E9%9D%92%E9%BE%99/" target="_self">
+          傻妞一键安装，对接青龙
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/12/%E5%82%BB%E5%A6%9E%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%EF%BC%8C%E5%AF%B9%E6%8E%A5%E9%9D%92%E9%BE%99/" target="_self">
+        <div>
+          # 一，安装傻妞 傻妞一键安装命令 1s=sillyGirl;a=arm64;if [[ $(uname -a | grep &quot;x86_64&quot;) != &quot;&quot; ]];then a=amd64;fi ;if [ ! -d $s ];then mkdir $s;fi ;cd $s;wget https://yanyu.ltd/https://github.com
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-12 22:05" pubdate>
+              2022-08-12
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/08/02/xdd-plus%E5%AE%89%E8%A3%85%EF%BC%8Cxdd%E4%BF%AE%E5%A4%8D%E6%95%99%E7%A8%8B/" target="_self">
+          xdd-plus安装，xdd修复教程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/02/xdd-plus%E5%AE%89%E8%A3%85%EF%BC%8Cxdd%E4%BF%AE%E5%A4%8D%E6%95%99%E7%A8%8B/" target="_self">
+        <div>
+          前言🚦个人安装XDD记录🚦PS：xdd扫码登录已经凉了，xdd可用来发送ck登录，查询还是可以的 安装xdd需要有青龙面板容器和go环境，青龙面板安装，go环境安装 一，安装相关依赖1，安装git，已安装的跳过此步 1yum install -y git  3，检查是否安装git 1git --version  4、安装gcc 1yum -y install gcc 1yum -y insta
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-02 22:13" pubdate>
+              2022-08-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/08/02/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E5%AE%89%E8%A3%85ninja%EF%BC%8CDIY-ninja%E7%95%8C%E9%9D%A2/" target="_self">
+          青龙面板安装ninja，DIY-ninja界面
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/02/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E5%AE%89%E8%A3%85ninja%EF%BC%8CDIY-ninja%E7%95%8C%E9%9D%A2/" target="_self">
+        <div>
+          🚦个人安装ninja备忘录🚦虽然ninja扫码登录已成过去式，凉了，但是可以DIY ninja 界面，粘贴ck提交到青龙面板 一，安装ninja1，首先进入青龙容器，qinglong 为容器名称，根据自己的填 1docker exec -it qinglong bash  2，拉取ninja 1git clone https://github.com/MoonBegonia/ninja.git
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-02 13:35" pubdate>
+              2022-08-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/07/31/%E5%B0%86%E7%94%B5%E8%84%91%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E5%88%B0gitee/" target="_self">
+          将电脑本地代码项目上传到gitee
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/31/%E5%B0%86%E7%94%B5%E8%84%91%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E5%88%B0gitee/" target="_self">
+        <div>
+          1，首先得有一个gitee仓库，自行创建，gitee官网 2，确保电脑已安装git，可以在cmd中 git –version 查看自己是否已经安装，未安装的去官网下载安装，GIit 1，在本地要上传到gitee的文件夹点击鼠标右键，选 git bush here，如图 2，进入到项目根目录，然后执行git命令 1git init 3，将项目的所有文件添加到仓库中，注意命令后面有一点 1git ad
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-31 06:22" pubdate>
+              2022-07-31
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/07/31/%E5%AE%89%E8%A3%85%E5%AF%B9%E6%8E%A5%E5%82%BB%E5%A6%9E%E5%92%8CXDD%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84node.js%E5%8F%8AGO%E7%8E%AF%E5%A2%83/" target="_self">
+          安装对接傻妞和XDD机器人的node.js及GO环境
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/31/%E5%AE%89%E8%A3%85%E5%AF%B9%E6%8E%A5%E5%82%BB%E5%A6%9E%E5%92%8CXDD%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84node.js%E5%8F%8AGO%E7%8E%AF%E5%A2%83/" target="_self">
+        <div>
+          # 安装nodejs 1，在 root 文件下创建 nodejs 文件夹并安装 1mkdir nodejs &amp;&amp; cd nodejs &amp;&amp; wget https://nodejs.org/dist/v16.16.0/node-v16.16.0-linux-x64.tar.xz 2，然后解压 1xz -d node-v16.16.0-linux-x64.tar.xz
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-31 04:05" pubdate>
+              2022-07-31
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/07/31/%E6%9C%80%E6%96%B0%E5%AE%8C%E6%95%B4%E7%89%88sillyGirl%E5%82%BB%E5%A6%9E%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" target="_self">
+          最新完整版sillyGirl傻妞命令大全
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/31/%E6%9C%80%E6%96%B0%E5%AE%8C%E6%95%B4%E7%89%88sillyGirl%E5%82%BB%E5%A6%9E%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" target="_self">
+        <div>
+          傻妞命令大全①完整版1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-31 04:05" pubdate>
+              2022-07-31
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%EF%BC%8C%E4%BA%92%E5%8A%A9%E7%A0%81%E8%AE%BE%E7%BD%AE/" target="_self">
+          青龙面板拉取脚本，互助码设置
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%EF%BC%8C%E4%BA%92%E5%8A%A9%E7%A0%81%E8%AE%BE%E7%BD%AE/" target="_self">
+        <div>
+          1，拉脚本库，附上大佬的拉库命令1ql repo https://github.com/KingRan/KR.git &quot;jd_|jx_|jdCookie&quot; &quot;activity|backUp&quot; &quot;^jd[^_]|USER|utils|function|sign|sendNotify|ql|JDJR&quot; 拉取不了就把配置文件config.s
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-31 04:05" pubdate>
+              2022-07-31
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" target="_self">
+          青龙面板搭建教程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" target="_self">
+        <div>
+          搭建青龙面板首先有个服务器，推荐腾讯云、阿里云，VM虚拟机也可以搭建 1.系统选择： centos7.6 以腾讯云为例，先选地区、然后选择官方镜像、系统镜像、Centos7.6版本 密码请自行设置。 2. SSH远程服务器管理工具：FinalShell  软件地址：FinalShell3.9.5.7免安装版  打开FinalShell，如图所示，填上服务器IP，用户名root，密码。  填好之后选
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-31 04:05" pubdate>
+              2022-07-31
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span> <script> var now = new Date(); function createtime() { var grt= new Date("03/13/2022 00:00:00"); now.setTime(now.getTime()+250); days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} document.getElementById("timeDate").innerHTML = "已安全运行 "+dnum+" 天 "; document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()",250); </script> </div>
+<a href="https://docs.qq.com/doc/DVFdRRElicWxlQnRN" target="_blank" rel="nofollow noopener"><span>公众号</span></a> <i class="iconfont icon-love"></i> <a href="https://jq.qq.com/?_wv=1027&k=Rvh2OGC8" target="_blank" rel="nofollow noopener"><span>加入Q群</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证2126693号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备100325920号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
       }
-    }
-    detectApple()
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
   
-    })()
-  </script><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
-  copy: {
-    success: 'Copy Successful',
-    error: 'Copy Failed',
-    noSupport: 'Browser Not Supported'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: 'Just now',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: undefined,
-  lightbox: 'null',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
-    buttonText: 'Load More'
-  },
-  isPhotoFigcaption: false,
-  islazyloadPlugin: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Hexo',
-  isHighlightShrink: false,
-  isToc: false,
-  pageType: 'home'
-}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> /</span></a></div><div class="menus_item"><a class="site-page" href="/%E6%A0%87%E7%AD%BE"><i class="fa-fw fas fa-tags"></i><span> /tags/</span></a></div><div class="menus_item"><a class="site-page" href="/%E5%88%86%E7%B1%BB"><i class="fa-fw fas fa-folder-open"></i><span> /categories/</span></a></div><div class="menus_item"><a class="site-page" href="/%E5%BD%92%E6%A1%A3"><i class="fa-fw fas fa-archive"></i><span> /archives/</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> /</span></a></div><div class="menus_item"><a class="site-page" href="/%E6%A0%87%E7%AD%BE"><i class="fa-fw fas fa-tags"></i><span> /tags/</span></a></div><div class="menus_item"><a class="site-page" href="/%E5%88%86%E7%B1%BB"><i class="fa-fw fas fa-folder-open"></i><span> /categories/</span></a></div><div class="menus_item"><a class="site-page" href="/%E5%BD%92%E6%A1%A3"><i class="fa-fw fas fa-archive"></i><span> /archives/</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Hexo</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/08/07/%E5%A5%BD%E4%BA%8B%E5%A5%BD%E5%93%88%E5%A5%BD/" title="好事好哈好">好事好哈好</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2026-08-07T01:54:25.000Z" title="Created 2026-08-07 09:54:25">2026-08-07</time></span></div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/08/24/win10%E6%9C%AC%E5%9C%B0Docker%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/" title="win10本地Docker搭建青龙面板">win10本地Docker搭建青龙面板</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-08-24T14:52:43.000Z" title="Created 2022-08-24 22:52:43">2022-08-24</time></span></div><div class="content">前言win10本地Docker搭建青龙面板，不用安装虚拟机，本教程以青龙2.10.13版本为例 开始1，电脑开启了VT，任务管理器，性能，查看有没有开启，没开启自行百度查找开启方法 2，打开【Hyper-V】，【适用于linux的windows子系统】和【虚拟机平台】，控制面板，程序和功能，启用或关闭Windows功能，如下图勾选，然后确定会让你重启，重启一下 3，如果电脑没有【Hyper-V】，桌面新建文本，复制下面的代码，文件重命名为：Hyper.bat（如果你的文本没有后缀，打开我的电脑（此电脑)–查看–点击右边的选项，再点查看，【隐藏已知文件类型的扩展名】前面的√去掉） 12345pushd &quot;%~dp0&quot;dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum &gt;hyper-v.txtfor /f %%i in (&#x27;findstr /i . hyper-v.txt 2^&gt;nul&#x27;) do dism /online /norestart /add-package:&quot...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/08/12/%E5%82%BB%E5%A6%9E%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%EF%BC%8C%E5%AF%B9%E6%8E%A5%E9%9D%92%E9%BE%99/" title="傻妞一键安装，对接青龙">傻妞一键安装，对接青龙</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-08-12T14:05:25.000Z" title="Created 2022-08-12 22:05:25">2022-08-12</time></span></div><div class="content">﻿# 一，安装傻妞 傻妞一键安装命令 1s=sillyGirl;a=arm64;if [[ $(uname -a | grep &quot;x86_64&quot;) != &quot;&quot; ]];then a=amd64;fi ;if [ ! -d $s ];then mkdir $s;fi ;cd $s;wget https://yanyu.ltd/https://github.com/cdle/$&#123;s&#125;/releases/download/main/$&#123;s&#125;_linux_$a -O $s &amp;&amp; chmod 777 $s;pkill -9 $s;$(pwd)/$s 如图这样就安装完成了，然后下载傻妞配置文件，放到 &#x2F;etc&#x2F;sillyGirl 目录下，后面就不用再操作一次傻妞配置文件下载：sets.conf 如果一键安装傻妞失败，就下载傻妞备份，上传到宝塔 root 文件夹下，解压即可 傻妞备份下载：傻妞备份 docker镜像安装傻妞 123456docker run \    -itd \ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/08/02/xdd-plus%E5%AE%89%E8%A3%85%EF%BC%8Cxdd%E4%BF%AE%E5%A4%8D%E6%95%99%E7%A8%8B/" title="xdd-plus安装，xdd修复教程">xdd-plus安装，xdd修复教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-08-02T14:13:20.000Z" title="Created 2022-08-02 22:13:20">2022-08-02</time></span></div><div class="content">前言🚦个人安装XDD记录🚦PS：xdd扫码登录已经凉了，xdd可用来发送ck登录，查询还是可以的 安装xdd需要有青龙面板容器和go环境，青龙面板安装，go环境安装 一，安装相关依赖1，安装git，已安装的跳过此步 1yum install -y git  3，检查是否安装git 1git --version  4、安装gcc 1yum -y install gcc 1yum -y install gcc-c++  5，安装epel源，可根据自己的系统安装，官网 1wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm  1rpm -ivh epel-release-latest-7.noarch.rpm  二，安装xdd-plus1，拉取xdd 1cd ~ &amp;&amp; git clone https://ghproxy.com/https://github.com/764763903a/xdd-plus.git 此时root文件夹下会新增文件夹xdd-plus目录文件夹，...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/08/02/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E5%AE%89%E8%A3%85ninja%EF%BC%8CDIY-ninja%E7%95%8C%E9%9D%A2/" title="青龙面板安装ninja，DIY-ninja界面">青龙面板安装ninja，DIY-ninja界面</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-08-02T05:35:55.000Z" title="Created 2022-08-02 13:35:55">2022-08-02</time></span></div><div class="content">🚦个人安装ninja备忘录🚦虽然ninja扫码登录已成过去式，凉了，但是可以DIY ninja 界面，粘贴ck提交到青龙面板 一，安装ninja1，首先进入青龙容器，qinglong 为容器名称，根据自己的填 1docker exec -it qinglong bash  2，拉取ninja 1git clone https://github.com/MoonBegonia/ninja.git /ql/ninja 3，进入ninja后端文件夹 1cd /ql/ninja/backend  4，安装ninja 1pnpm install  5，启动ninja 1pm2 start 6，添加随青龙启动自启，在宝塔  &#x2F;root&#x2F;ql&#x2F;config 目录下的 extra.sh 添加下面代码 12cd /ql/ninja/backendpm2 start   至此 ninja 安装完成，浏览器进网址：http://ip:5701  二、DIY ninja界面1，开启ninja隐藏的输入ck栏 1.1首先进入青龙容器 1docker exec -it qi...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/07/31/%E5%B0%86%E7%94%B5%E8%84%91%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E5%88%B0gitee/" title="将电脑本地代码项目上传到gitee">将电脑本地代码项目上传到gitee</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-07-30T22:22:06.000Z" title="Created 2022-07-31 06:22:06">2022-07-31</time></span></div><div class="content">1，首先得有一个gitee仓库，自行创建，gitee官网 2，确保电脑已安装git，可以在cmd中 git –version 查看自己是否已经安装，未安装的去官网下载安装，GIit 1，在本地要上传到gitee的文件夹点击鼠标右键，选 git bush here，如图 2，进入到项目根目录，然后执行git命令 1git init 3，将项目的所有文件添加到仓库中，注意命令后面有一点 1git add . 4，将add的文件commit到本地仓库。(双引号内容随便写)  1git commit -m &quot;测试&quot;  5，将本地的仓库文件夹关联到gitee上，(https://gitee.com/XXX/XXX.git 是仓库的 https 地址)，地址复制到命令替换  1git remote add origin https://gitee.com/xxxxx/xxxxx.git 6，将gitee上的仓库pull到本地文件夹 1git pull --rebase origin master  此时会弹出一个状态框，输入gitee账号密码即可7，上传项目代码到gite...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/07/31/%E5%AE%89%E8%A3%85%E5%AF%B9%E6%8E%A5%E5%82%BB%E5%A6%9E%E5%92%8CXDD%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84node.js%E5%8F%8AGO%E7%8E%AF%E5%A2%83/" title="安装对接傻妞和XDD机器人的node.js及GO环境">安装对接傻妞和XDD机器人的node.js及GO环境</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-07-30T20:05:25.000Z" title="Created 2022-07-31 04:05:25">2022-07-31</time></span></div><div class="content">﻿# 安装nodejs 1，在 root 文件下创建 nodejs 文件夹并安装 1mkdir nodejs &amp;&amp; cd nodejs &amp;&amp; wget https://nodejs.org/dist/v16.16.0/node-v16.16.0-linux-x64.tar.xz 2，然后解压 1xz -d node-v16.16.0-linux-x64.tar.xz 1tar -xvf node-v16.16.0-linux-x64.tar 3，设置环境变量 1vi /etc/profile 进入之后粘贴下面命令放到最后面，输入法切换到英文，按 i ，再按↓一直到最后一行，复制下面代码粘贴到最后面 12export NODEJS_HOME=/root/nodejs/node-v16.16.0-linux-x64export PATH=$PATH:$NODEJS_HOME/bin 保存并退出，先按 esc，然后 :wq  再按回车（输入法切换到英文的冒号） 4，立即生效，输入下面命令，再按 回车 1source /etc/profile 5，检查结果...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/07/31/%E6%9C%80%E6%96%B0%E5%AE%8C%E6%95%B4%E7%89%88sillyGirl%E5%82%BB%E5%A6%9E%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" title="最新完整版sillyGirl傻妞命令大全">最新完整版sillyGirl傻妞命令大全</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-07-30T20:05:25.000Z" title="Created 2022-07-31 04:05:25">2022-07-31</time></span></div><div class="content">傻妞命令大全①完整版123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161# 基础配置set sillyGirl name 傻妞 #设置傻妞机器人名set sillyGirl port 8080 #设置傻妞http服务端口set sillyGirl duration 5 #傻妞消息撤回等待时间，单...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%EF%BC%8C%E4%BA%92%E5%8A%A9%E7%A0%81%E8%AE%BE%E7%BD%AE/" title="青龙面板拉取脚本，互助码设置">青龙面板拉取脚本，互助码设置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-07-30T20:05:25.000Z" title="Created 2022-07-31 04:05:25">2022-07-31</time></span></div><div class="content">﻿ 1，拉脚本库，附上大佬的拉库命令1ql repo https://github.com/KingRan/KR.git &quot;jd_|jx_|jdCookie&quot; &quot;activity|backUp&quot; &quot;^jd[^_]|USER|utils|function|sign|sendNotify|ql|JDJR&quot; 拉取不了就把配置文件config.sh第20行改下 1https://pd.zwc365.com/cfworker/ 脚本拉取完成后，下面添加ck 2，设置环境变量添加的ck可在宝塔面板的 &#x2F;root&#x2F;ql&#x2F;config，env.sh查看 拉库拉不动，拉库失败，修改 HOST 可以直连 Github  SSH连接服务器，打开：&#x2F;etc&#x2F;hosts 在最后面添加 1234513.114.40.48 github.com13.114.40.48 github.global.ssl.fastly.net13.114.40.48 nodeload.github.com13.114....</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" title="青龙面板搭建教程">青龙面板搭建教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-07-30T20:05:25.000Z" title="Created 2022-07-31 04:05:25">2022-07-31</time></span></div><div class="content">搭建青龙面板首先有个服务器，推荐腾讯云、阿里云，VM虚拟机也可以搭建 1.系统选择： centos7.6 以腾讯云为例，先选地区、然后选择官方镜像、系统镜像、Centos7.6版本 密码请自行设置。 2. SSH远程服务器管理工具：FinalShell  软件地址：FinalShell3.9.5.7免安装版  打开FinalShell，如图所示，填上服务器IP，用户名root，密码。  填好之后选择服务器进行连接，连接成功如下图  3、安装宝塔一键安装代码如下： 12yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh  回复：y    等待它自己安装完成即可，成功如图： 复制上面的外网面板地址——下面的password，然后浏览器输入外网面板地址，登陆用户名和密码就是下面的username、password 如果访问进不去，放行下8888端口 4、登录宝塔面板，安装docker 登陆宝塔之后，绑...</div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/07/%E5%A5%BD%E4%BA%8B%E5%A5%BD%E5%93%88%E5%A5%BD/" title="好事好哈好">好事好哈好</a><time datetime="2026-08-07T01:54:25.000Z" title="Created 2026-08-07 09:54:25">2026-08-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/24/win10%E6%9C%AC%E5%9C%B0Docker%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/" title="win10本地Docker搭建青龙面板">win10本地Docker搭建青龙面板</a><time datetime="2022-08-24T14:52:43.000Z" title="Created 2022-08-24 22:52:43">2022-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/12/%E5%82%BB%E5%A6%9E%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%EF%BC%8C%E5%AF%B9%E6%8E%A5%E9%9D%92%E9%BE%99/" title="傻妞一键安装，对接青龙">傻妞一键安装，对接青龙</a><time datetime="2022-08-12T14:05:25.000Z" title="Created 2022-08-12 22:05:25">2022-08-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/02/xdd-plus%E5%AE%89%E8%A3%85%EF%BC%8Cxdd%E4%BF%AE%E5%A4%8D%E6%95%99%E7%A8%8B/" title="xdd-plus安装，xdd修复教程">xdd-plus安装，xdd修复教程</a><time datetime="2022-08-02T14:13:20.000Z" title="Created 2022-08-02 22:13:20">2022-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/02/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E5%AE%89%E8%A3%85ninja%EF%BC%8CDIY-ninja%E7%95%8C%E9%9D%A2/" title="青龙面板安装ninja，DIY-ninja界面">青龙面板安装ninja，DIY-ninja界面</a><time datetime="2022-08-02T05:35:55.000Z" title="Created 2022-08-02 13:35:55">2022-08-02</time></div></div></div></div><div class="card-widget card-archives">
-    <div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div>
+    <script  src="/js/img-lazyload.js" ></script>
   
-    <ul class="card-archive-list">
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2026/08/">
-            <span class="card-archive-list-date">
-              August 2026
-            </span>
-            <span class="card-archive-list-count">1</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2022/08/">
-            <span class="card-archive-list-date">
-              August 2022
-            </span>
-            <span class="card-archive-list-count">4</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2022/07/">
-            <span class="card-archive-list-date">
-              July 2022
-            </span>
-            <span class="card-archive-list-count">5</span>
-          </a>
-        </li>
-      
-    </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">10</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-08-07T03:39:54.645Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By John Doe</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+
+
+
+
+  <script defer src="/js/openkounter.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiantiao.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/dianjichuzi.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
