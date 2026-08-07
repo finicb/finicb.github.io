@@ -1,19 +1,22 @@
 @media (max-width: 768px) {  
-  /* 隐藏导航栏背景和品牌文字 */  
   header.navbar {  
     background: transparent !important;  
     box-shadow: none !important;  
+    border-bottom: none !important;  
   }  
   .navbar-brand {  
     display: none !important;  
   }  
-  /* 只保留三横杠按钮可见 */  
   .navbar-toggler {  
-    position: fixed;  
-    top: 10px;  
-    right: 10px;  
-    z-index: 9999;  
+    position: fixed !important;  
+    top: 10px !important;  
+    right: 10px !important;  
+    z-index: 9999 !important;  
     background: rgba(0,0,0,0.3) !important;  
-    border-radius: 4px;  
+    border-radius: 4px !important;  
+    border: none !important;  
+  }  
+  .navbar-toggler:focus {  
+    outline: none !important;  
   }  
 }  
