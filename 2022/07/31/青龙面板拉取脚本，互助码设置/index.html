@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>青龙面板拉取脚本，互助码设置 | 拾光小本</title><meta name="author" content="闲人"><meta name="copyright" content="闲人"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1，拉脚本库，附上大佬的拉库命令1ql repo https:&#x2F;&#x2F;github.com&#x2F;KingRan&#x2F;KR.git &quot;jd_|jx_|jdCookie&quot; &quot;activity|backUp&quot; &quot;^jd[^_]|USER|utils|function|sign|sendNotify|ql|JDJR&quot; 拉取不了就把配置文件config.sh第">
+<meta property="og:type" content="article">
+<meta property="og:title" content="青龙面板拉取脚本，互助码设置">
+<meta property="og:url" content="https://finicb.github.io/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%EF%BC%8C%E4%BA%92%E5%8A%A9%E7%A0%81%E8%AE%BE%E7%BD%AE/index.html">
+<meta property="og:site_name" content="拾光小本">
+<meta property="og:description" content="1，拉脚本库，附上大佬的拉库命令1ql repo https:&#x2F;&#x2F;github.com&#x2F;KingRan&#x2F;KR.git &quot;jd_|jx_|jdCookie&quot; &quot;activity|backUp&quot; &quot;^jd[^_]|USER|utils|function|sign|sendNotify|ql|JDJR&quot; 拉取不了就把配置文件config.sh第">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://finicb.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2022-07-30T20:05:25.000Z">
+<meta property="article:modified_time" content="2026-08-09T18:33:22.799Z">
+<meta property="article:author" content="闲人">
+<meta property="article:tag" content="Hexo, N1, 折腾日记, 数字生活, 拾光小本">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://finicb.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "青龙面板拉取脚本，互助码设置",
+  "url": "https://finicb.github.io/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%EF%BC%8C%E4%BA%92%E5%8A%A9%E7%A0%81%E8%AE%BE%E7%BD%AE/",
+  "image": "https://finicb.github.io/img/butterfly-icon.png",
+  "datePublished": "2022-07-30T20:05:25.000Z",
+  "dateModified": "2026-08-09T18:33:22.799Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "闲人",
+      "url": "https://finicb.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://finicb.github.io/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%EF%BC%8C%E4%BA%92%E5%8A%A9%E7%A0%81%E8%AE%BE%E7%BD%AE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '青龙面板拉取脚本，互助码设置',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><style>
+  /* 公告栏容器 */
+  #announcement-typed {
+    display: inline-block;
+    min-height: 1.5em;
+    line-height: 1.5;
+    vertical-align: baseline;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  /* 光标 —— 用 span 包裹，和文字等高 */
+  #announcement-typed .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: var(--font-color);
+    margin-left: 3px;
+    vertical-align: text-bottom;
+    position: relative;
+    top: 0.05em;
+    animation: cursor-blink 1s step-end infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 0; }
+    50%      { opacity: 0.7; }
+  }
+
+  @media (max-width: 768px) {
+    #announcement-typed .cursor {
+      width: 1.5px;
+      height: 0.9em;
+    }
+  }
+</style>
+<script defer src="/js/announcement-typewriter.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/css/daziyanse.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css"><style>#footer .framework-info{display:none!important}</style><link rel="stylesheet" href="/css/hide-nav.css"><script src="/js/footer.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="/css/hide-nav.css"><style>#footer .framework-info{display:none!important}</style><style>.footer-bg{min-height:unset!important;padding-top:0!important}</style><link rel="stylesheet" href="/css/announcement-cursor.css"><script defer src="/js/announcement-typewriter.js"></script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">浮光集</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">拾光小本</span></a><a class="nav-page-title" href="/"><span class="site-name">青龙面板拉取脚本，互助码设置</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">青龙面板拉取脚本，互助码设置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-30T20:05:25.000Z" title="发表于 2022-07-31 04:05:25">2022-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-09T18:33:22.799Z" title="更新于 2026-08-10 02:33:22">2026-08-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/">青龙面板</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">641</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="1，拉脚本库，附上大佬的拉库命令"><a href="#1，拉脚本库，附上大佬的拉库命令" class="headerlink" title="1，拉脚本库，附上大佬的拉库命令"></a>1，拉脚本库，附上大佬的拉库命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ql repo https://github.com/KingRan/KR.git <span class="string">&quot;jd_|jx_|jdCookie&quot;</span> <span class="string">&quot;activity|backUp&quot;</span> <span class="string">&quot;^jd[^_]|USER|utils|function|sign|sendNotify|ql|JDJR&quot;</span></span><br></pre></td></tr></table></figure>
+<p>拉取不了就把配置文件config.sh第20行改下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://pd.zwc365.com/cfworker/</span><br></pre></td></tr></table></figure>
+<p><img src="/images/e83117ff5b3345f1b2798f8d15c9ef6f.png"><br>脚本拉取完成后，下面添加ck</p>
+<h2 id="2，设置环境变量"><a href="#2，设置环境变量" class="headerlink" title="2，设置环境变量"></a><strong>2，设置环境变量</strong></h2><p><img src="/images/d9569f3331374612a623dd622920ceb9.png"><br>添加的ck可在宝塔面板的 &#x2F;root&#x2F;ql&#x2F;config，env.sh查看</p>
+<p><img src="/images/78ba921ce97246fc9051d8464f3adecc.png"><br>拉库拉不动，拉库失败，修改 HOST 可以直连 Github </p>
+<p>SSH连接服务器，打开：&#x2F;etc&#x2F;hosts 在最后面添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">13.114.40.48 github.com</span><br><span class="line">13.114.40.48 github.global.ssl.fastly.net</span><br><span class="line">13.114.40.48 nodeload.github.com</span><br><span class="line">13.114.40.48 api.github.com</span><br><span class="line">13.114.40.48 codeload.github.com</span><br></pre></td></tr></table></figure>
+<p>或者直接替换代理连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://gh.fakev.cn/</span><br><span class="line">https://hub.fastgit.xyz/</span><br><span class="line">https://hub.0z.gs</span><br></pre></td></tr></table></figure>
+<p><img src="/images/b1e598044085404e8f0d7037b17e0b4c.png"></p>
+<h1 id="3，时间定时设置"><a href="#3，时间定时设置" class="headerlink" title="3，时间定时设置"></a>3，时间定时设置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(分 时 天 月 周)</span><br><span class="line">20 */12 * * * 每12小时的20分</span><br><span class="line">0 0,1-23/3 * * * 0点 1 点 后每3小时</span><br><span class="line">13 1,6,22 * * * 1:13 6:13 22:13运行</span><br><span class="line">0 20 30 * * 每月30日20点运行</span><br><span class="line">0 20 * * 7 每周日20点</span><br><span class="line">12 8 * * *每天8:12</span><br><span class="line">0 0-23/1 * * * 每小时一次</span><br><span class="line">58 0,9,19 * * * 0点58，09点58，19点58运行，每天3次</span><br><span class="line">0 8,14 * * * 每天8点，14点运行，每天2次</span><br><span class="line"> */15 6-23 * * * 每15分钟运行</span><br><span class="line"> 30 3-23/8 * * * 03.30，11.30，19.30运行，每8小时运行，每天3次</span><br><span class="line"> 0 1-23/4 * * * 每4小时运行，每天6次</span><br></pre></td></tr></table></figure>
+<p>定时规则可以到这里查看：<a target="_blank" rel="noopener" href="https://tool.lu/crontab/">执行时间计算</a></p>
+<h1 id="4，开卡变量，复制下面代码到配置文件-config-sh"><a href="#4，开卡变量，复制下面代码到配置文件-config-sh" class="headerlink" title="4，开卡变量，复制下面代码到配置文件 config.sh"></a>4，开卡变量，复制下面代码到配置文件 config.sh</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 开卡——所有（匹配24及以后的开卡脚本）</span></span><br><span class="line"><span class="built_in">export</span> guaopencard_All=<span class="string">&quot;true&quot;</span></span><br><span class="line"><span class="comment">## 加购物车——所有（匹配24及以后的开卡脚本）</span></span><br><span class="line"><span class="built_in">export</span> guaopencard_addSku_All=<span class="string">&quot;true&quot;</span></span><br><span class="line"><span class="comment">## 执行任务——所有（匹配24及以后的开卡脚本）</span></span><br><span class="line"><span class="built_in">export</span> guaopencardRun_All=<span class="string">&quot;true&quot;</span></span><br><span class="line"><span class="comment">## 抽奖——所有（匹配24及以后的开卡脚本）</span></span><br><span class="line"><span class="built_in">export</span> guaopencard_draw=<span class="string">&quot;true&quot;</span></span><br><span class="line"><span class="built_in">export</span> guaopenwait_All=<span class="string">&quot;60&quot;</span></span><br><span class="line"><span class="built_in">export</span> guaunknownTask_addSku_All=<span class="string">&quot;true&quot;</span></span><br><span class="line"><span class="built_in">export</span> guaopencard=<span class="string">&quot;true&quot;</span></span><br><span class="line"><span class="built_in">export</span> exjxbeans==<span class="string">&quot;true&quot;</span></span><br><span class="line"><span class="built_in">export</span> FALR_MODE=<span class="string">&quot;true&quot;</span></span><br><span class="line"><span class="built_in">export</span> CHETOU_NUMBER=<span class="string">&quot;5&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="5，青龙面板路径，方便备份"><a href="#5，青龙面板路径，方便备份" class="headerlink" title="5，青龙面板路径，方便备份"></a>5，青龙面板路径，方便备份</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.CK文件 <span class="comment"># JD_cookie</span></span><br><span class="line">/root/ql/config/env.sh</span><br><span class="line">2.配置文件</span><br><span class="line">/root/ql/config/config.sh</span><br><span class="line">3.脚本目录</span><br><span class="line">/root/ql/scripts</span><br><span class="line">4.定时任务</span><br><span class="line">/root/ql/config/crontab.list</span><br></pre></td></tr></table></figure>
+
+<h1 id="6，助力码设置"><a href="#6，助力码设置" class="headerlink" title="6，助力码设置"></a>6，助力码设置</h1><p>助力码下载地址：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1QHKvbxWdpnK_7Ip-sNyfSw?pwd=77fm">青龙互助文件</a></p>
+<p>1，把 code.sh   task_before.sh  文件放到 ql&#x2F;config 目录下<br>2，青龙添加任务即可<br><img src="/images/3389326a32a0426f9ee6e714ba10b6aa.png"></p>
+<p>如需更改调用哪个脚本日志， 在 code.sh 自行更改<br><img src="/images/ec1667506e1d4675a6e590aaa2007d25.png"></p>
+<p>获取互助码成功的前提条件：你必须运行过相应的脚本，形成了日志，它才可以读取和合并你的互助码</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://finicb.github.io">闲人</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://finicb.github.io/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%EF%BC%8C%E4%BA%92%E5%8A%A9%E7%A0%81%E8%AE%BE%E7%BD%AE/">https://finicb.github.io/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%EF%BC%8C%E4%BA%92%E5%8A%A9%E7%A0%81%E8%AE%BE%E7%BD%AE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://finicb.github.io" target="_blank">拾光小本</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" title="青龙面板搭建教程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">青龙面板搭建教程</div></div><div class="info-2"><div class="info-item-1"> title: 青龙面板搭建教程date: 2022-07-31 04:05:25tags:categories:  青龙面板—  搭建青龙面板首先有个服务器，推荐腾讯云、阿里云，VM虚拟机也可以搭建 1.系统选择： centos7.6 以腾讯云为例，先选地区、然后选择官方镜像、系统镜像、Centos7.6版本 密码请自行设置。 2. SSH远程服务器管理工具：FinalShell  软件地址：FinalShell3.9.5.7免安装版  打开FinalShell，如图所示，填上服务器IP，用户名root，密码。  填好之后选择服务器进行连接，连接成功如下图  3、安装宝塔一键安装代码如下： 12yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh  回复：y    等待它自己安装完成即可，成功如图： 复制上面的外网面板地址——下面的password，然后浏览器输入外网面板地址，登陆用户名和密码就...</div></div></div></a><a class="pagination-related" href="/2022/07/31/%E6%9C%80%E6%96%B0%E5%AE%8C%E6%95%B4%E7%89%88sillyGirl%E5%82%BB%E5%A6%9E%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" title="最新完整版sillyGirl傻妞命令大全"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">最新完整版sillyGirl傻妞命令大全</div></div><div class="info-2"><div class="info-item-1">傻妞命令大全①完整版123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161# 基础配置set sillyGirl name 傻妞 #设置傻妞机器人名set sillyGirl port 8080 #设置傻妞http服务端口set sillyGirl duration 5 #傻妞消息撤回等待时间，单...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">闲人</div><div class="author-info-description">所谓“拾光”，不过是想把那些一闪而过的灵感、折腾半天才搞懂的步骤，小心翼翼地放进这个叫“小本”的盒子里。</div><div class="site-data"><a href="/archives/"><div class="headline">浮光集</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=83L1N-Lw1iCsMfpYcBnb5OwhUcaNScd8&amp;noverify=0"><i class="fab fa-github"></i><span>Bot</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><span id="announcement-typed"></span></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%8C%E6%8B%89%E8%84%9A%E6%9C%AC%E5%BA%93%EF%BC%8C%E9%99%84%E4%B8%8A%E5%A4%A7%E4%BD%AC%E7%9A%84%E6%8B%89%E5%BA%93%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">1，拉脚本库，附上大佬的拉库命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%8C%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">2，设置环境变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%EF%BC%8C%E6%97%B6%E9%97%B4%E5%AE%9A%E6%97%B6%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">3，时间定时设置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%EF%BC%8C%E5%BC%80%E5%8D%A1%E5%8F%98%E9%87%8F%EF%BC%8C%E5%A4%8D%E5%88%B6%E4%B8%8B%E9%9D%A2%E4%BB%A3%E7%A0%81%E5%88%B0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-config-sh"><span class="toc-number">4.</span> <span class="toc-text">4，开卡变量，复制下面代码到配置文件 config.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%EF%BC%8C%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E8%B7%AF%E5%BE%84%EF%BC%8C%E6%96%B9%E4%BE%BF%E5%A4%87%E4%BB%BD"><span class="toc-number">5.</span> <span class="toc-text">5，青龙面板路径，方便备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%EF%BC%8C%E5%8A%A9%E5%8A%9B%E7%A0%81%E8%AE%BE%E7%BD%AE"><span class="toc-number">6.</span> <span class="toc-text">6，助力码设置</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/10/N1%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%EF%BC%8C%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0Github/" title="N1搭建Hexo博客，部署博客到Github">N1搭建Hexo博客，部署博客到Github</a><time datetime="2026-08-09T19:03:23.000Z" title="发表于 2026-08-10 03:03:23">2026-08-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/09/%E7%94%B5%E8%84%91%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0Github/" title="电脑本地搭建Hexo博客部署到Github">电脑本地搭建Hexo博客部署到Github</a><time datetime="2026-08-09T11:05:49.000Z" title="发表于 2026-08-09 19:05:49">2026-08-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/07/N1%E5%AE%89%E8%A3%85Docker-%E5%AE%89%E8%A3%85Portainer%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/" title="N1安装Docker，安装Portainer可视化管理面板">N1安装Docker，安装Portainer可视化管理面板</a><time datetime="2026-08-07T14:05:05.000Z" title="发表于 2026-08-07 22:05:05">2026-08-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/07/%E6%96%90%E8%AE%AFN1%E5%88%B7Armbian%E7%B3%BB%E7%BB%9F-%E5%AE%89%E8%A3%85Node.js-Git-PM2-%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF/" title="斐讯N1刷Armbian系统，安装Node.js、Git、PM2、宝塔面板">斐讯N1刷Armbian系统，安装Node.js、Git、PM2、宝塔面板</a><time datetime="2026-08-07T13:57:49.000Z" title="发表于 2026-08-07 21:57:49">2026-08-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/24/win10%E6%9C%AC%E5%9C%B0Docker%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/" title="win10本地Docker搭建青龙面板">win10本地Docker搭建青龙面板</a><time datetime="2022-08-24T14:52:43.000Z" title="发表于 2022-08-24 22:52:43">2022-08-24</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div><div class="footer_custom_text"><div style="text-align:center;margin-bottom:6px;"><span id="timeDate" style="color:var(--light-grey);">载入天数...</span><span id="times" style="color:var(--light-grey);">载入时分秒...</span></div><div style="text-align:center;"><a href="javascript:void(0)" onclick="showQR()" style="color:var(--light-grey);">公众号</a><i class="fa fa-heart" style="margin:0 4px;color:#ff6b81;font-size:10px;"></i><a href="https://jq.qq.com/?_wv=1027&k=Rvh2OGC8" target="_blank" rel="nofollow noopener" style="color:var(--light-grey);">加入Q群</a><i class="fa fa-heart" style="margin:0 4px;color:#ff6b81;font-size:10px;"></i><span style="color:var(--light-grey);">访客 <span id="footer_site_uv">0</span></span><i class="fa fa-heart" style="margin:0 4px;color:#ff6b81;font-size:10px;"></i><span style="color:var(--light-grey);">访问 <span id="footer_site_pv">0</span> 次</span></div><div style="text-align:center;margin-top:8px;color:var(--light-grey);font-size:14px;">© 2022 - 2026 By 闲人 | <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" style="color:var(--light-grey);">不赶路，只感受路过的光</a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="rightside-categories" type="button" title="分类" onclick="window.pjax?pjax.loadUrl('/categories/'):location.href='/categories/'" data-pjax> <i class="fas fa-folder-open"> </i></button><button id="rightside-custom" type="button" title="我的导航" onclick="window.pjax?pjax.loadUrl('https://2xboo.picp.vip/'):location.href='https://2xboo.picp.vip/'" data-pjax> <i class="fas fa-compass"> </i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><div class="js-pjax"></div><script src="/js/footer.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script><script src="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiantiao.js"></script><script src="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/js/dianjichuzi.js"></script><script src="/js/social-blank.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
