@@ -1,0 +1,88 @@
+#announcement-typed {
+  display: inline-block;
+  min-height: 1.5em;
+  line-height: 1.5;
+  vertical-align: baseline;
+  font-size: inherit;
+  color: inherit;
+  position: relative;
+  padding-right: 6px;
+}
+
+/* ✅ 光标用 ::after，和首页标题完全一致 */
+#announcement-typed::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: var(--font-color);
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  position: relative;
+  top: 0.05em;
+  animation: cursor-blink 1s step-end infinite;
+  opacity: 1;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  #announcement-typed::after {
+    width: 1.5px;
+    height: 0.9em;
+  }
+}
+
+/* ========== 首页标题打字机光标 ========== */
+
+/* ✅ 彻底隐藏 Typed.js 自带光标 */
+.typed-cursor {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  font-size: 0 !important;
+  color: transparent !important;
+}
+
+/* ✅ 用 ::after 做光标（和公告完全一致） */
+#subtitle::after,
+.site-subtitle::after,
+.typed-element::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: var(--font-color);
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  position: relative;
+  top: 0.05em;
+  animation: cursor-blink 1s step-end infinite;
+  opacity: 1;
+}
+
+/* 防止 ::after 在文字被清空时消失 */
+#subtitle,
+.site-subtitle,
+.typed-element {
+  position: relative;
+  display: inline-block;
+  min-height: 1.5em;
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+  #subtitle::after,
+  .site-subtitle::after,
+  .typed-element::after,
+  #announcement-typed::after {   /* ✅ 关键：把公告栏也拉进来 */
+    width: 1.5px;
+    height: 1.16em;              /* ✅ 原来是 0.9em，调高 */
+    top: 0.02em;                 /* ✅ 稍微下沉，对齐文字 */
+  }
+}
