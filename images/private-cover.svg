@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3a3a5c"/>
+      <stop offset="100%" stop-color="#5c5c8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <circle cx="200" cy="120" r="36" fill="rgba(255,255,255,0.15)"/>
+  <rect x="178" y="125" width="44" height="34" rx="4" fill="#ffffff"/>
+  <path d="M186 125 v-12 a14 14 0 0 1 28 0 v12" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="200" cy="140" r="4" fill="#3a3a5c"/>
+  <text x="200" y="210" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="26" fill="rgba(255,255,255,0.9)" text-anchor="middle" font-weight="600">私密相册</text>
+  <text x="200" y="240" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)" text-anchor="middle">需要密码访问</text>
+</svg>

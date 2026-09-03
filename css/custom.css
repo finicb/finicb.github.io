@@ -1,0 +1,34 @@
+/* 文章结尾固定文字 */
+.post-end-fixed{
+  margin-top: 2.4rem;
+}
+
+.post-end-hr{
+  border: none;
+  border-top: 1px solid var(--hr-border-color, #e6e6e6);
+  margin: 1.8rem 0;
+}
+
+.post-end-quote{
+  margin: 1.6rem 0;
+  padding: 1rem 1.2rem;
+  background: var(--card-bg, #fafafa);
+  border-left: 4px solid var(--theme-color, #49b1f5);
+  border-radius: 6px;
+  color: var(--text-color, #555);
+  font-size: .92rem;
+  line-height: 1.8;
+}
+
+.post-end-quote p{
+  margin: 0;
+  font-weight: 500;
+}
+
+.post-end-quote footer{
+  margin-top: .6rem;
+  font-size: .82rem;
+  color: var(--text-color-light, #999);
+  text-align: right;
+  font-style: italic;
+}

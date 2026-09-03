@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>拾光小本</title><meta name="author" content="拾光者"><meta name="copyright" content="拾光者"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="所谓“拾光”，不过是想把那些一闪而过的灵感、折腾半天才搞懂的步骤，小心翼翼地放进这个叫“小本”的盒子里。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="拾光小本">
+<meta property="og:url" content="https://finicb.github.io/page/2/index.html">
+<meta property="og:site_name" content="拾光小本">
+<meta property="og:description" content="所谓“拾光”，不过是想把那些一闪而过的灵感、折腾半天才搞懂的步骤，小心翼翼地放进这个叫“小本”的盒子里。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://finicb.github.io/img/butterfly-icon.png">
+<meta property="article:author" content="拾光者">
+<meta property="article:tag" content="Hexo, N1, 折腾日记, 数字生活, 拾光小本">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://finicb.github.io/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://finicb.github.io/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '拾光小本',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">拾光小本</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">写在光落下来的地方</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/08/24/win10%E6%9C%AC%E5%9C%B0Docker%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/" title="win10本地Docker搭建青龙面板">win10本地Docker搭建青龙面板</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-24T14:52:43.000Z" title="发表于 2022-08-24 22:52:43">2022-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></span></div><div class="content">前言win10本地Docker搭建青龙面板，不用安装虚拟机，本教程以青龙2.10.13版本为例 开始1，电脑开启了VT，任务管理器，性能，查看有没有开启，没开启自行百度查找开启方法 2，打开【Hyper-V】，【适用于linux的windows子系统】和【虚拟机平台】，控制面板，程序和功能，启用或关闭Windows功能，如下图勾选，然后确定会让你重启，重启一下 3，如果电脑没有【Hyper-V】，桌面新建文本，复制下面的代码，文件重命名为：Hyper.bat（如果你的文本没有后缀，打开我的电脑（此电脑)–查看–点击右边的选项，再点查看，【隐藏已知文件类型的扩展名】前面的√去掉） 12345pushd &quot;%~dp0&quot;dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum &gt;hyper-v.txtfor /f %%i in (&#x27;findstr /i . hyper-v.txt 2^&gt;nul&#x27;) do dism /online /norestart /add-package:&quot...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/08/12/%E5%82%BB%E5%A6%9E%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%EF%BC%8C%E5%AF%B9%E6%8E%A5%E9%9D%92%E9%BE%99/" title="傻妞一键安装，对接青龙">傻妞一键安装，对接青龙</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-12T14:05:25.000Z" title="发表于 2022-08-12 22:05:25">2022-08-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%82%BB%E5%A6%9E%E6%9C%BA%E5%99%A8%E4%BA%BA/">傻妞机器人</a></span></div><div class="content">一，安装傻妞傻妞一键安装命令 1s=sillyGirl;a=arm64;if [[ $(uname -a | grep &quot;x86_64&quot;) != &quot;&quot; ]];then a=amd64;fi ;if [ ! -d $s ];then mkdir $s;fi ;cd $s;wget https://yanyu.ltd/https://github.com/cdle/$&#123;s&#125;/releases/download/main/$&#123;s&#125;_linux_$a -O $s &amp;&amp; chmod 777 $s;pkill -9 $s;$(pwd)/$s 如图这样就安装完成了，然后下载傻妞配置文件，放到 &#x2F;etc&#x2F;sillyGirl 目录下，后面就不用再操作一次傻妞配置文件下载：sets.conf 如果一键安装傻妞失败，就下载傻妞备份，上传到宝塔 root 文件夹下，解压即可 傻妞备份下载：傻妞备份 docker镜像安装傻妞 123456docker run \    -itd \    -...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/08/02/xdd-plus%E5%AE%89%E8%A3%85%EF%BC%8Cxdd%E4%BF%AE%E5%A4%8D%E6%95%99%E7%A8%8B/" title="xdd-plus安装，xdd修复教程">xdd-plus安装，xdd修复教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-02T14:13:20.000Z" title="发表于 2022-08-02 22:13:20">2022-08-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%82%BB%E5%A6%9E%E6%9C%BA%E5%99%A8%E4%BA%BA/">傻妞机器人</a></span></div><div class="content">前言🚦个人安装XDD记录🚦 PS：xdd扫码登录已经凉了，xdd可用来发送ck登录，查询还是可以的 安装xdd需要有青龙面板容器和go环境，青龙面板安装，go环境安装 一，安装相关依赖1，安装git，已安装的跳过此步 1yum install -y git  3，检查是否安装git 1git --version  4、安装gcc 1yum -y install gcc 1yum -y install gcc-c++  5，安装epel源，可根据自己的系统安装，官网 1wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm  1rpm -ivh epel-release-latest-7.noarch.rpm  二，安装xdd-plus1，拉取xdd 1cd ~ &amp;&amp; git clone https://ghproxy.com/https://github.com/764763903a/xdd-plus.git 此时root文件夹下会新增文件夹xdd-plus目录文件夹...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/08/02/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E5%AE%89%E8%A3%85ninja%EF%BC%8CDIY-ninja%E7%95%8C%E9%9D%A2/" title="青龙面板安装ninja，DIY-ninja界面">青龙面板安装ninja，DIY-ninja界面</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-02T05:35:55.000Z" title="发表于 2022-08-02 13:35:55">2022-08-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/">青龙面板</a></span></div><div class="content">🚦个人安装ninja备忘录🚦虽然ninja扫码登录已成过去式，凉了，但是可以DIY ninja 界面，粘贴ck提交到青龙面板 一，安装ninja1，首先进入青龙容器，qinglong 为容器名称，根据自己的填 1docker exec -it qinglong bash  2，拉取ninja 1git clone https://github.com/MoonBegonia/ninja.git /ql/ninja 3，进入ninja后端文件夹 1cd /ql/ninja/backend  4，安装ninja 1pnpm install  5，启动ninja 1pm2 start 6，添加随青龙启动自启，在宝塔  &#x2F;root&#x2F;ql&#x2F;config 目录下的 extra.sh 添加下面代码 12cd /ql/ninja/backendpm2 start   至此 ninja 安装完成，浏览器进网址：http://ip:5701  二、DIY ninja界面1，开启ninja隐藏的输入ck栏 1.1首先进入青龙容器 1docker exec -it qi...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/07/31/%E5%B0%86%E7%94%B5%E8%84%91%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E5%88%B0gitee/" title="将电脑本地代码项目上传到gitee">将电脑本地代码项目上传到gitee</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-30T22:22:06.000Z" title="发表于 2022-07-31 06:22:06">2022-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></span></div><div class="content">1，首先得有一个gitee仓库，自行创建，gitee官网 2，确保电脑已安装git，可以在cmd中 git –version 查看自己是否已经安装，未安装的去官网下载安装，GIit 1，在本地要上传到gitee的文件夹点击鼠标右键，选 git bush here，如图 2，进入到项目根目录，然后执行git命令 1git init 3，将项目的所有文件添加到仓库中，注意命令后面有一点 1git add . 4，将add的文件commit到本地仓库。(双引号内容随便写)  1git commit -m &quot;测试&quot;  5，将本地的仓库文件夹关联到gitee上，(https://gitee.com/XXX/XXX.git 是仓库的 https 地址)，地址复制到命令替换  1git remote add origin https://gitee.com/xxxxx/xxxxx.git 6，将gitee上的仓库pull到本地文件夹 1git pull --rebase origin master  此时会弹出一个状态框，输入gitee账号密码即可7，上传项目代码到gite...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/07/31/%E5%AE%89%E8%A3%85%E5%AF%B9%E6%8E%A5%E5%82%BB%E5%A6%9E%E5%92%8CXDD%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84node.js%E5%8F%8AGO%E7%8E%AF%E5%A2%83/" title="安装对接傻妞和XDD机器人的node.js及GO环境">安装对接傻妞和XDD机器人的node.js及GO环境</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-30T20:05:25.000Z" title="发表于 2022-07-31 04:05:25">2022-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%82%BB%E5%A6%9E%E6%9C%BA%E5%99%A8%E4%BA%BA/">傻妞机器人</a></span></div><div class="content">一，安装nodejs1，在 root 文件下创建 nodejs 文件夹并安装 1mkdir nodejs &amp;&amp; cd nodejs &amp;&amp; wget https://nodejs.org/dist/v16.16.0/node-v16.16.0-linux-x64.tar.xz 2，然后解压 1xz -d node-v16.16.0-linux-x64.tar.xz 1tar -xvf node-v16.16.0-linux-x64.tar 3，设置环境变量 1vi /etc/profile 进入之后粘贴下面命令放到最后面，输入法切换到英文，按 i ，再按↓一直到最后一行，复制下面代码粘贴到最后面 12export NODEJS_HOME=/root/nodejs/node-v16.16.0-linux-x64export PATH=$PATH:$NODEJS_HOME/bin 保存并退出，先按 esc，然后 :wq  再按回车（输入法切换到英文的冒号） 4，立即生效，输入下面命令，再按 回车 1source /etc/profile 5，检查结果，显...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/07/31/%E6%9C%80%E6%96%B0%E5%AE%8C%E6%95%B4%E7%89%88sillyGirl%E5%82%BB%E5%A6%9E%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" title="最新完整版sillyGirl傻妞命令大全">最新完整版sillyGirl傻妞命令大全</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-30T20:05:25.000Z" title="发表于 2022-07-31 04:05:25">2022-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%82%BB%E5%A6%9E%E6%9C%BA%E5%99%A8%E4%BA%BA/">傻妞机器人</a></span></div><div class="content">傻妞命令大全①完整版123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161# 基础配置set sillyGirl name 傻妞 #设置傻妞机器人名set sillyGirl port 8080 #设置傻妞http服务端口set sillyGirl duration 5 #傻妞消息撤回等待时间，单...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%EF%BC%8C%E4%BA%92%E5%8A%A9%E7%A0%81%E8%AE%BE%E7%BD%AE/" title="青龙面板拉取脚本，互助码设置">青龙面板拉取脚本，互助码设置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-30T20:05:25.000Z" title="发表于 2022-07-31 04:05:25">2022-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/">青龙面板</a></span></div><div class="content">1，拉脚本库，附上大佬的拉库命令1ql repo https://github.com/KingRan/KR.git &quot;jd_|jx_|jdCookie&quot; &quot;activity|backUp&quot; &quot;^jd[^_]|USER|utils|function|sign|sendNotify|ql|JDJR&quot; 拉取不了就把配置文件config.sh第20行改下 1https://pd.zwc365.com/cfworker/ 脚本拉取完成后，下面添加ck 2，设置环境变量添加的ck可在宝塔面板的 &#x2F;root&#x2F;ql&#x2F;config，env.sh查看 拉库拉不动，拉库失败，修改 HOST 可以直连 Github  SSH连接服务器，打开：&#x2F;etc&#x2F;hosts 在最后面添加 1234513.114.40.48 github.com13.114.40.48 github.global.ssl.fastly.net13.114.40.48 nodeload.github.com13.114.40...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/07/31/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" title="青龙面板搭建教程">青龙面板搭建教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-30T20:05:25.000Z" title="发表于 2022-07-31 04:05:25">2022-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/">青龙面板</a></span></div><div class="content">搭建青龙面板首先有个服务器，推荐腾讯云、阿里云，VM虚拟机也可以搭建 1.系统选择： centos7.6 以腾讯云为例，先选地区、然后选择官方镜像、系统镜像、Centos7.6版本 密码请自行设置。 2. SSH远程服务器管理工具：FinalShell  软件地址：FinalShell3.9.5.7免安装版  打开FinalShell，如图所示，填上服务器IP，用户名root，密码。  填好之后选择服务器进行连接，连接成功如下图  3、安装宝塔一键安装代码如下： 12yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh  回复：y    等待它自己安装完成即可，成功如图： 复制上面的外网面板地址——下面的password，然后浏览器输入外网面板地址，登陆用户名和密码就是下面的username、password 如果访问进不去，放行下8888端口 4、登录宝塔面板，安装docker 登陆宝塔之后，绑...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">拾光者</div><div class="author-info-description">所谓“拾光”，不过是想把那些一闪而过的灵感、折腾半天才搞懂的步骤，小心翼翼地放进这个叫“小本”的盒子里。</div><div class="site-data"><a href="/archives/"><div class="headline">归档</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/02/N1%E6%90%AD%E5%BB%BA%E5%AE%88%E6%8A%A4%E7%8E%AF%E5%A2%83%E4%BB%A5%E5%8F%8A%E9%87%8D%E8%A3%85%20Armbian%20%E5%90%8E%E5%AE%8C%E6%95%B4%E6%81%A2%E5%A4%8D%E6%95%B4%E5%A5%97%E5%AE%88%E6%8A%A4%E7%8E%AF%E5%A2%83%EF%BC%8C%E6%B8%85%E7%90%86%E6%97%A5%E5%BF%97%E6%AD%A5%E9%AA%A4/" title="N1搭建守护环境以及重装 Armbian 后完整恢复整套守护环境，清理日志步骤">N1搭建守护环境以及重装 Armbian 后完整恢复整套守护环境，清理日志步骤</a><time datetime="2026-09-01T17:24:57.000Z" title="发表于 2026-09-02 01:24:57">2026-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/22/Butterfly%E4%B8%BB%E9%A2%985-7-%E6%B7%BB%E5%8A%A0-Live2D-%E7%9C%8B%E6%9D%BF%E5%A8%98/" title="Butterfly主题5.7 添加 Live2D 看板娘">Butterfly主题5.7 添加 Live2D 看板娘</a><time datetime="2026-08-21T16:45:13.000Z" title="发表于 2026-08-22 00:45:13">2026-08-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/20/Butterfly%E4%B8%BB%E9%A2%985.7-%E6%B7%BB%E5%8A%A0%E4%BE%A7%E8%BE%B9%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%EF%BC%8C%E6%9C%AC%E5%9C%B0%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4/" title="Butterfly主题5.7-添加侧边音乐播放器，本地音乐播放完整配置步骤">Butterfly主题5.7-添加侧边音乐播放器，本地音乐播放完整配置步骤</a><time datetime="2026-08-20T08:35:01.000Z" title="发表于 2026-08-20 16:35:01">2026-08-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/17/N1%E6%90%AD%E5%BB%BAfilebrowser%E4%B8%AA%E4%BA%BA%E4%BA%91%E7%9B%98/" title="N1搭建filebrowser个人云盘">N1搭建filebrowser个人云盘</a><time datetime="2026-08-17T06:58:27.000Z" title="发表于 2026-08-17 14:58:27">2026-08-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/16/butterfly%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%EF%BC%8C%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E6%80%A7%E5%8D%9A%E5%AE%A2/" title="butterfly主题美化，打造属于自己的个性博客">butterfly主题美化，打造属于自己的个性博客</a><time datetime="2026-08-16T12:44:50.000Z" title="发表于 2026-08-16 20:44:50">2026-08-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Butterfly%E4%B8%BB%E9%A2%98/"><span class="card-category-list-name">Butterfly主题</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%82%BB%E5%A6%9E%E6%9C%BA%E5%99%A8%E4%BA%BA/"><span class="card-category-list-name">傻妞机器人</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%99%E7%A8%8B/"><span class="card-category-list-name">教程</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%96%90%E8%AE%AFN1/"><span class="card-category-list-name">斐讯N1</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/"><span class="card-category-list-name">青龙面板</span><span class="card-category-list-count">3</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Armbian/" style="font-size: 1.1em; color: #999">Armbian</a> <a href="/tags/%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF/" style="font-size: 1.1em; color: #999">宝塔面板</a> <a href="/tags/Portainer/" style="font-size: 1.1em; color: #999">Portainer</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1.1em; color: #999">运维</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/%E6%96%90%E8%AE%AFN1/" style="font-size: 1.5em; color: #99a9bf">斐讯N1</a> <a href="/tags/Node-js/" style="font-size: 1.1em; color: #999">Node.js</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 1.1em; color: #999">容器</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/PM2/" style="font-size: 1.1em; color: #999">PM2</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/09/">
+            <span class="card-archive-list-date">
+              九月 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/08/">
+            <span class="card-archive-list-date">
+              八月 2026
+            </span>
+            <span class="card-archive-list-count">8</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/03/">
+            <span class="card-archive-list-date">
+              三月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/08/">
+            <span class="card-archive-list-date">
+              八月 2022
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/07/">
+            <span class="card-archive-list-date">
+              七月 2022
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">19</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-09-03T14:04:18.522Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap" style="padding:20px 0;text-align:center;">   <div style="font-size:13px;margin-bottom:6px;">   <span id="timeDate" style="color:#fff;">载入天数...    </span><span id="times" style="color:#fff;">载入时分秒...    </span></div><div style="font-size:13px;">   <a href="javascript:void(0)" onclick="showQR()" style="color:#fff;">公众号    </a><i class="fa fa-heart" style="margin:0 2px;color:#ff6b81;font-size:10px;">   </i><a href="https://jq.qq.com/?_wv=1027&amp;k=Rvh2OGC8" target="_blank" rel="nofollow noopener">加入Q群    </a><i class="fa fa-heart" style="margin:0 2px;color:#ff6b81;font-size:10px;">   </i><span style="color:#fff;">   <span>访客     </span><span id="footer_site_uv">0    </span></span><i class="fa fa-heart" style="margin:0 2px;color:#ff6b81;font-size:10px;">   </i><span style="color:#fff;">   <span>访问     </span><span id="footer_site_pv">0    </span><span>次    </span></span></div><div style="font-size:13px;margin-top:6px;color:#fff;">   © 2022 - 2026 By 拾光者 &nbsp;|&nbsp;    <a href="https://2xboo.picp.vip/" target="_blank" rel="nofollow noopener" style="color:#fff;text-decoration:none;">不赶路，只感受路过的光  </a></div></div><div id="qr-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;cursor:pointer;" onclick="hideQR()">   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:20px;border-radius:10px;text-align:center;">   <img src="/img/gongzhonghao.png" style="max-width:250px;border-radius:5px;"/><p style="margin:10px 0 0;color:#333;font-size:14px;">扫码关注公众号    </p></div></div><script>var now = new Date();    
+function createtime() {    
+    var grt = new Date("03/13/2022 00:00:00");    
+    now.setTime(now.getTime() + 250);    
+    days = (now - grt) / 1000 / 60 / 60 / 24;    
+    dnum = Math.floor(days);    
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);    
+    hnum = Math.floor(hours);    
+    if (String(hnum).length == 1) { hnum = "0" + hnum; }    
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);    
+    mnum = Math.floor(minutes);    
+    if (String(mnum).length == 1) { mnum = "0" + mnum; }    
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);    
+    snum = Math.round(seconds);    
+    if (String(snum).length == 1) { snum = "0" + snum; }    
+    document.getElementById("timeDate").innerHTML = "已安全运行 " + dnum + " 天 ";    
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";    
+}    
+setInterval("createtime()", 250);    
+function showQR() {    
+  document.getElementById("qr-overlay").style.display = "block";    
+}    
+function hideQR() {    
+  document.getElementById("qr-overlay").style.display = "none";    
+}    
+function syncBusuanzi() {    
+  var uv = document.getElementById("busuanzi_value_site_uv");    
+  var pv = document.getElementById("busuanzi_value_site_pv");    
+  var fuv = document.getElementById("footer_site_uv");    
+  var fpv = document.getElementById("footer_site_pv");    
+  if (uv && fuv) fuv.innerHTML = uv.innerHTML;    
+  if (pv && fpv) fpv.innerHTML = pv.innerHTML;    
+}    
+setInterval(syncBusuanzi, 1000);  </script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

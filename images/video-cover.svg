@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2c3e50"/>
+      <stop offset="100%" stop-color="#4a6572"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <circle cx="200" cy="135" r="48" fill="rgba(255,255,255,0.15)"/>
+  <polygon points="188,112 188,158 228,135" fill="#ffffff"/>
+  <text x="200" y="225" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="28" fill="rgba(255,255,255,0.9)" text-anchor="middle" font-weight="600">视频合集</text>
+</svg>
