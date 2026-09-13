@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>N1整盘备份+恢复系统备忘录 | 拾光小本</title><meta name="author" content="拾光者"><meta name="copyright" content="拾光者"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第一部分：创建备份脚本1. 在哪个位置创建位置：N1 的 &#x2F;root&#x2F; 目录（用户主目录，放系统脚本的地方） 用 FinalShell 连接 N1 后，命令提示符显示 root@armbian:~# 就表示你在 &#x2F;root 目录了 2. 创建脚本文件在终端粘贴下面整段（一次性复制粘贴，回车）： 12345678910111213141516171819202122232425cat &gt; &#x2F;r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="N1整盘备份+恢复系统备忘录">
+<meta property="og:url" content="https://www.finicb.icu/2026/09/13/N1%E6%95%B4%E7%9B%98%E5%A4%87%E4%BB%BD-%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F%E5%A4%87%E5%BF%98%E5%BD%95/index.html">
+<meta property="og:site_name" content="拾光小本">
+<meta property="og:description" content="第一部分：创建备份脚本1. 在哪个位置创建位置：N1 的 &#x2F;root&#x2F; 目录（用户主目录，放系统脚本的地方） 用 FinalShell 连接 N1 后，命令提示符显示 root@armbian:~# 就表示你在 &#x2F;root 目录了 2. 创建脚本文件在终端粘贴下面整段（一次性复制粘贴，回车）： 12345678910111213141516171819202122232425cat &gt; &#x2F;r">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.finicb.icu/img/touxiang.png">
+<meta property="article:published_time" content="2026-09-13T06:42:11.000Z">
+<meta property="article:modified_time" content="2026-09-13T06:42:11.000Z">
+<meta property="article:author" content="拾光者">
+<meta property="article:tag" content="Hexo, N1, 折腾日记, 数字生活, 拾光小本">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.finicb.icu/img/touxiang.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "N1整盘备份+恢复系统备忘录",
+  "url": "https://www.finicb.icu/2026/09/13/N1%E6%95%B4%E7%9B%98%E5%A4%87%E4%BB%BD-%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F%E5%A4%87%E5%BF%98%E5%BD%95/",
+  "image": "https://www.finicb.icu/img/touxiang.png",
+  "datePublished": "2026-09-13T06:42:11.000Z",
+  "dateModified": "2026-09-13T06:42:11.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "拾光者",
+      "url": "https://www.finicb.icu"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.finicb.icu/2026/09/13/N1%E6%95%B4%E7%9B%98%E5%A4%87%E4%BB%BD-%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F%E5%A4%87%E5%BF%98%E5%BD%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'N1整盘备份+恢复系统备忘录',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><style>
+  /* 公告栏容器 */
+  #announcement-typed {
+    display: inline-block;
+    min-height: 1.5em;
+    line-height: 1.5;
+    vertical-align: baseline;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  /* 光标 —— 用 span 包裹，和文字等高 */
+  #announcement-typed .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: var(--font-color);
+    margin-left: 3px;
+    vertical-align: text-bottom;
+    position: relative;
+    top: 0.05em;
+    animation: cursor-blink 1s step-end infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 0; }
+    50%      { opacity: 0.7; }
+  }
+
+  @media (max-width: 768px) {
+    #announcement-typed .cursor {
+      width: 1.5px;
+      height: 0.9em;
+    }
+  }
+</style>
+<link rel="stylesheet" href="/css/texiao/toubudaziji.css"><link rel="stylesheet" href="/css/texiao/daziyanse.css"><link rel="stylesheet" href="/css/texiao/gundongtiao.css"><link rel="stylesheet" href="/css/texiao/shubiao.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><style>#footer .framework-info{display:none!important}</style><style>.footer-bg{min-height:unset!important;padding-top:0!important}</style><link rel="stylesheet" href="/css/hide-nav.css"><link rel="stylesheet" href="/css/announcement-cursor.css"><link rel="stylesheet" href="/css/avatar-round.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/gradient-bg.css"><link rel="stylesheet" href="/css/APlayer.min.css"><style>#global-aplayer{position:fixed;right:-300px;top:50%;transform:translateY(-50%);width:280px;z-index:999;box-shadow:0 2px 12px rgba(0,0,0,.25);border-radius:8px 0 0 8px;overflow:hidden;transition:right .3s ease}#global-aplayer.show{right:0}#global-aplayer .aplayer{margin:0;border-radius:0}#aplayer-toggle{position:fixed;right:0;top:50%;transform:translateY(-50%);width:34px;height:76px;background:#49b1f5;color:#fff;display:flex;align-items:center;justify-content:center;border-radius:8px 0 0 8px;cursor:pointer;z-index:998;font-size:16px;box-shadow:-2px 0 8px rgba(0,0,0,.2);transition:right .3s ease;user-select:none}#aplayer-toggle:hover{background:#3a9fd9}#aplayer-toggle.hide{right:280px}@media(max-width:768px){#global-aplayer{width:220px}#aplayer-toggle.hide{right:220px}}</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">归档</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://finicb.icu:4000/相册/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/post_top.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">拾光小本</span></a><a class="nav-page-title" href="/"><span class="site-name">N1整盘备份+恢复系统备忘录</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://finicb.icu:4000/相册/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">N1整盘备份+恢复系统备忘录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-13T06:42:11.000Z" title="发表于 2026-09-13 14:42:11">2026-09-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-13T06:42:11.000Z" title="更新于 2026-09-13 14:42:11">2026-09-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%96%90%E8%AE%AFN1/">斐讯N1</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">899</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="第一部分：创建备份脚本"><a href="#第一部分：创建备份脚本" class="headerlink" title="第一部分：创建备份脚本"></a>第一部分：创建备份脚本</h2><h3 id="1-在哪个位置创建"><a href="#1-在哪个位置创建" class="headerlink" title="1. 在哪个位置创建"></a>1. 在哪个位置创建</h3><p><strong>位置</strong>：N1 的 <code>/root/</code> 目录（用户主目录，放系统脚本的地方）</p>
+<p>用 FinalShell 连接 N1 后，命令提示符显示 <code>root@armbian:~#</code> 就表示你在 <code>/root</code> 目录了</p>
+<h3 id="2-创建脚本文件"><a href="#2-创建脚本文件" class="headerlink" title="2. 创建脚本文件"></a>2. 创建脚本文件</h3><p>在终端粘贴下面整段（一次性复制粘贴，回车）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /root/backup_system.sh &lt;&lt; <span class="string">&#x27;EOF&#x27;</span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment"># N1 Armbian 整盘备份脚本</span></span><br><span class="line"><span class="comment"># 备份整个 eMMC (/dev/mmcblk2) 到外接盘 /mnt/usb/_backup/</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line">STAMP=$(<span class="built_in">date</span> +%Y%m%d_%H%M)</span><br><span class="line">BK=/mnt/usb/_backup</span><br><span class="line">DISK=/dev/mmcblk2</span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="string">&quot;<span class="variable">$BK</span>&quot;</span></span><br><span class="line">mountpoint -q /mnt/usb || &#123; <span class="built_in">echo</span> <span class="string">&quot;外接盘未挂载，请先挂载&quot;</span>; <span class="built_in">exit</span> 1; &#125;</span><br><span class="line"><span class="built_in">ls</span> -t <span class="string">&quot;<span class="variable">$BK</span>&quot;</span>/n1_full_*.img.gz 2&gt;/dev/null | <span class="built_in">tail</span> -n +4 | xargs -r <span class="built_in">rm</span> -f</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&gt;&gt;&gt; 开始备份 <span class="variable">$DISK</span> 到 <span class="variable">$BK</span>/n1_full_<span class="variable">$STAMP</span>.img.gz ...&quot;</span></span><br><span class="line"><span class="built_in">sync</span></span><br><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=<span class="variable">$DISK</span> bs=4M status=progress 2&gt;/tmp/dd_progress.txt | gzip -1 &gt; <span class="string">&quot;<span class="variable">$BK</span>/n1_full_<span class="variable">$STAMP</span>.img.gz&quot;</span></span><br><span class="line"><span class="built_in">sync</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&gt;&gt;&gt; 备份完成：&quot;</span></span><br><span class="line"><span class="built_in">ls</span> -lh <span class="string">&quot;<span class="variable">$BK</span>&quot;</span>/n1_full_*.img.gz</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;======== 恢复方法 ========&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;1. 用 Armbian 官方镜像做 U 盘启动盘，N1 从 U 盘启动进临时系统&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;2. 挂载外接盘后执行：&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;   gunzip -c /mnt/usb/_backup/n1_full_<span class="variable">$STAMP</span>.img.gz | dd of=/dev/mmcblk2 bs=4M status=progress&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;3. 完成后 reboot，N1 完全恢复成备份时的系统&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;==========================================&quot;</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-给脚本执行权限"><a href="#3-给脚本执行权限" class="headerlink" title="3. 给脚本执行权限"></a>3. 给脚本执行权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x /root/backup_system.sh</span><br></pre></td></tr></table></figure>
+<h3 id="4-验证脚本已创建"><a href="#4-验证脚本已创建" class="headerlink" title="4. 验证脚本已创建"></a>4. 验证脚本已创建</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /root/backup_system.sh</span><br></pre></td></tr></table></figure>
+
+<p>能看到脚本内容就成功了。以后脚本就在 <code>/root/backup_system.sh</code></p>
+<h2 id="第二部分：执行备份（随时可做）"><a href="#第二部分：执行备份（随时可做）" class="headerlink" title="第二部分：执行备份（随时可做）"></a>第二部分：执行备份（随时可做）</h2><h3 id="方法-A：前台执行（备份期间别断开-FinalShell）"><a href="#方法-A：前台执行（备份期间别断开-FinalShell）" class="headerlink" title="方法 A：前台执行（备份期间别断开 FinalShell）"></a>方法 A：前台执行（备份期间别断开 FinalShell）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash /root/backup_system.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法-B：后台执行（断线、关电脑都不影响，推荐）"><a href="#方法-B：后台执行（断线、关电脑都不影响，推荐）" class="headerlink" title="方法 B：后台执行（断线、关电脑都不影响，推荐）"></a>方法 B：后台执行（断线、关电脑都不影响，推荐）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setsid bash /root/backup_system.sh &lt; /dev/null &gt; /tmp/backup_run.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="查看备份进度-结果"><a href="#查看备份进度-结果" class="headerlink" title="查看备份进度 &#x2F; 结果"></a>查看备份进度 &#x2F; 结果</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看是否在跑</span></span><br><span class="line">ps aux | grep -E <span class="string">&quot;dd |gzip&quot;</span> | grep -v grep</span><br><span class="line"></span><br><span class="line"><span class="comment"># 看进度（方法B）</span></span><br><span class="line"><span class="built_in">tail</span> -1 /tmp/dd_progress.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 看结果（方法B，完成后）</span></span><br><span class="line"><span class="built_in">tail</span> -20 /tmp/backup_run.log</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>完成标志</strong>：<code>dd/gzip</code> 进程消失 + <code>_backup</code> 目录出现新文件 <code>n1_full_时间戳.img.gz</code>（10~20G）</p>
+<blockquote>
+<p>脚本特性：自动保留最近 3 份镜像，第 4 份旧的自动删除。</p>
+</blockquote>
+<h2 id="第三部分：完整恢复流程（重装-还原系统时）"><a href="#第三部分：完整恢复流程（重装-还原系统时）" class="headerlink" title="第三部分：完整恢复流程（重装 &#x2F; 还原系统时）"></a>第三部分：完整恢复流程（重装 &#x2F; 还原系统时）</h2><h3 id="第-1-步：电脑上制作-U-盘启动盘"><a href="#第-1-步：电脑上制作-U-盘启动盘" class="headerlink" title="第 1 步：电脑上制作 U 盘启动盘"></a>第 1 步：电脑上制作 U 盘启动盘</h3><ol>
+<li>下载 <strong>Armbian 官方镜像</strong>（N1 用的版本）<a target="_blank" rel="noopener" href="https://1812237349.share.123pan.cn/123pan/0UyrVv-N8gn">下载地址</a></li>
+<li>下载 <strong>balenaEtcher</strong>（免费）<a target="_blank" rel="noopener" href="https://1812237349.share.123pan.cn/123pan/0UyrVv-m3En">下载地址</a></li>
+<li>打开 Etcher → 选择镜像 → 选择 U 盘 → 烧录</li>
+</ol>
+<h3 id="第-2-步：N1-从-U-盘启动"><a href="#第-2-步：N1-从-U-盘启动" class="headerlink" title="第 2 步：N1 从 U 盘启动"></a>第 2 步：N1 从 U 盘启动</h3><ol>
+<li>U 盘插到 N1</li>
+<li>N1 开机 → 自动从 U 盘启动（进临时系统，<strong>不进入 eMMC 系统</strong>）</li>
+</ol>
+<h3 id="第-3-步：进临时系统后，挂载外接盘-确认设备名"><a href="#第-3-步：进临时系统后，挂载外接盘-确认设备名" class="headerlink" title="第 3 步：进临时系统后，挂载外接盘 + 确认设备名"></a>第 3 步：进临时系统后，挂载外接盘 + 确认设备名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 挂载外接盘（找到备份文件）</span></span><br><span class="line">mount /dev/sda1 /mnt/usb</span><br><span class="line"></span><br><span class="line"><span class="comment"># ⚠️ 关键！确认 eMMC 是哪个设备</span></span><br><span class="line">lsblk</span><br></pre></td></tr></table></figure>
+<p>看输出：<strong>eMMC（内置盘）通常是 mmcblk1 或 mmcblk2</strong>，大小 57.6G 那个就是。<strong>一定要看清，写错盘会把 U 盘 &#x2F; 外接盘覆盖！</strong></p>
+<h3 id="第-4-步：恢复镜像（设备名以-lsblk-为准）"><a href="#第-4-步：恢复镜像（设备名以-lsblk-为准）" class="headerlink" title="第 4 步：恢复镜像（设备名以 lsblk 为准）"></a>第 4 步：恢复镜像（设备名以 lsblk 为准）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunzip -c /mnt/usb/_backup/n1_full_20260911.img.gz | <span class="built_in">dd</span> of=/dev/mmcblk2 bs=4M status=progress</span><br></pre></td></tr></table></figure>
+<p>（如果 lsblk 显示 eMMC 是 <code>mmcblk1</code>，把命令里的 <code>mmcblk2</code> 改成 <code>mmcblk1</code>）</p>
+<h3 id="第-5-步：完成并重启"><a href="#第-5-步：完成并重启" class="headerlink" title="第 5 步：完成并重启"></a>第 5 步：完成并重启</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sync</span></span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p><strong>重启时拔掉 U 盘</strong>，N1 从 eMMC 启动 → 回到备份时的完整系统（宝塔、相册、WebDAV、DDNS 全部恢复）</p>
+<h3 id="第-6-步：验证"><a href="#第-6-步：验证" class="headerlink" title="第 6 步：验证"></a>第 6 步：验证</h3><ul>
+<li>浏览器打开 <code>http://finicb.icu:4000/相册/</code>（相册）</li>
+<li>打开 <code>https://www.finicb.icu</code>（博客）</li>
+<li>SSH 连接 N1 检查服务：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status webdav ddns-go</span><br><span class="line">pm2 status</span><br></pre></td></tr></table></figure>
+
+<h2 id="重要提醒"><a href="#重要提醒" class="headerlink" title="重要提醒"></a>重要提醒</h2><ol>
+<li><strong>恢复的是备份时刻的状态</strong>—— 备份之后新增的照片、文章、改动<strong>不会包含</strong>，重要改动后建议重新备份</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.finicb.icu">拾光者</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.finicb.icu/2026/09/13/N1%E6%95%B4%E7%9B%98%E5%A4%87%E4%BB%BD-%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F%E5%A4%87%E5%BF%98%E5%BD%95/">https://www.finicb.icu/2026/09/13/N1%E6%95%B4%E7%9B%98%E5%A4%87%E4%BB%BD-%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F%E5%A4%87%E5%BF%98%E5%BD%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.finicb.icu" target="_blank">拾光小本</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/touxiang.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/09/11/N1%E8%87%AA%E5%BB%BA%E7%A7%81%E6%9C%89%E4%BA%91%E9%83%A8%E7%BD%B2-WebDAV-%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%AE%89%E8%A3%85%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88rclone-%E5%8E%9F%E7%94%9F%E6%96%B9%E6%A1%88%EF%BC%89/" title="N1自建私有云部署-WebDAV-服务，安装全记录（rclone-原生方案）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">N1自建私有云部署-WebDAV-服务，安装全记录（rclone-原生方案）</div></div><div class="info-2"><div class="info-item-1">环境：N1・Armbian（arm64）・外接硬盘 &#x2F;mnt&#x2F;usb・端口 5005・账号 admin一、安装 rclone1apt install -y rclone  二、启动 WebDAV 服务1rclone serve webdav /mnt/usb --addr :5005 --user admin --pass 你的密码 看到 WebDav Server started on http:&#x2F;&#x2F;[::]:5005&#x2F; 即启动成功（Ctrl+C 停止测试） 三、防火墙放行 5005 端口1ufw allow 5005/tcp   验证：ufw status verbose | grep 5005 显示 5005/tcp ALLOW IN Anywhere (v6) 四、验证访问12345# 内网验证curl -u admin:你的密码 http://192.168.2.235:5005/# 本机 IPv6 验证curl -g -6 -u admin:你的密码 &quot;http://[你的IPv6地址]:5005/&quot...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">拾光者</div><div class="author-info-description">所谓“拾光”，不过是想把那些一闪而过的灵感、折腾半天才搞懂的步骤，小心翼翼地放进这个叫“小本”的盒子里。</div><div class="site-data"><a href="/archives/"><div class="headline">归档</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=83L1N-Lw1iCsMfpYcBnb5OwhUcaNScd8&amp;noverify=0"><i class="fas fa-robot"></i><span>Bot</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><span id="announcement-typed"></span></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%9A%E5%88%9B%E5%BB%BA%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC"><span class="toc-number">1.</span> <span class="toc-text">第一部分：创建备份脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9C%A8%E5%93%AA%E4%B8%AA%E4%BD%8D%E7%BD%AE%E5%88%9B%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">1. 在哪个位置创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">2. 创建脚本文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BB%99%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-number">1.3.</span> <span class="toc-text">3. 给脚本执行权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%AA%8C%E8%AF%81%E8%84%9A%E6%9C%AC%E5%B7%B2%E5%88%9B%E5%BB%BA"><span class="toc-number">1.4.</span> <span class="toc-text">4. 验证脚本已创建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%9A%E6%89%A7%E8%A1%8C%E5%A4%87%E4%BB%BD%EF%BC%88%E9%9A%8F%E6%97%B6%E5%8F%AF%E5%81%9A%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">第二部分：执行备份（随时可做）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-A%EF%BC%9A%E5%89%8D%E5%8F%B0%E6%89%A7%E8%A1%8C%EF%BC%88%E5%A4%87%E4%BB%BD%E6%9C%9F%E9%97%B4%E5%88%AB%E6%96%AD%E5%BC%80-FinalShell%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">方法 A：前台执行（备份期间别断开 FinalShell）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-B%EF%BC%9A%E5%90%8E%E5%8F%B0%E6%89%A7%E8%A1%8C%EF%BC%88%E6%96%AD%E7%BA%BF%E3%80%81%E5%85%B3%E7%94%B5%E8%84%91%E9%83%BD%E4%B8%8D%E5%BD%B1%E5%93%8D%EF%BC%8C%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">方法 B：后台执行（断线、关电脑都不影响，推荐）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%A4%87%E4%BB%BD%E8%BF%9B%E5%BA%A6-%E7%BB%93%E6%9E%9C"><span class="toc-number">2.3.</span> <span class="toc-text">查看备份进度 &#x2F; 结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86%EF%BC%9A%E5%AE%8C%E6%95%B4%E6%81%A2%E5%A4%8D%E6%B5%81%E7%A8%8B%EF%BC%88%E9%87%8D%E8%A3%85-%E8%BF%98%E5%8E%9F%E7%B3%BB%E7%BB%9F%E6%97%B6%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">第三部分：完整恢复流程（重装 &#x2F; 还原系统时）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC-1-%E6%AD%A5%EF%BC%9A%E7%94%B5%E8%84%91%E4%B8%8A%E5%88%B6%E4%BD%9C-U-%E7%9B%98%E5%90%AF%E5%8A%A8%E7%9B%98"><span class="toc-number">3.1.</span> <span class="toc-text">第 1 步：电脑上制作 U 盘启动盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC-2-%E6%AD%A5%EF%BC%9AN1-%E4%BB%8E-U-%E7%9B%98%E5%90%AF%E5%8A%A8"><span class="toc-number">3.2.</span> <span class="toc-text">第 2 步：N1 从 U 盘启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC-3-%E6%AD%A5%EF%BC%9A%E8%BF%9B%E4%B8%B4%E6%97%B6%E7%B3%BB%E7%BB%9F%E5%90%8E%EF%BC%8C%E6%8C%82%E8%BD%BD%E5%A4%96%E6%8E%A5%E7%9B%98-%E7%A1%AE%E8%AE%A4%E8%AE%BE%E5%A4%87%E5%90%8D"><span class="toc-number">3.3.</span> <span class="toc-text">第 3 步：进临时系统后，挂载外接盘 + 确认设备名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC-4-%E6%AD%A5%EF%BC%9A%E6%81%A2%E5%A4%8D%E9%95%9C%E5%83%8F%EF%BC%88%E8%AE%BE%E5%A4%87%E5%90%8D%E4%BB%A5-lsblk-%E4%B8%BA%E5%87%86%EF%BC%89"><span class="toc-number">3.4.</span> <span class="toc-text">第 4 步：恢复镜像（设备名以 lsblk 为准）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC-5-%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%B9%B6%E9%87%8D%E5%90%AF"><span class="toc-number">3.5.</span> <span class="toc-text">第 5 步：完成并重启</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC-6-%E6%AD%A5%EF%BC%9A%E9%AA%8C%E8%AF%81"><span class="toc-number">3.6.</span> <span class="toc-text">第 6 步：验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E6%8F%90%E9%86%92"><span class="toc-number">4.</span> <span class="toc-text">重要提醒</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/13/N1%E6%95%B4%E7%9B%98%E5%A4%87%E4%BB%BD-%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F%E5%A4%87%E5%BF%98%E5%BD%95/" title="N1整盘备份+恢复系统备忘录">N1整盘备份+恢复系统备忘录</a><time datetime="2026-09-13T06:42:11.000Z" title="发表于 2026-09-13 14:42:11">2026-09-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/11/N1%E8%87%AA%E5%BB%BA%E7%A7%81%E6%9C%89%E4%BA%91%E9%83%A8%E7%BD%B2-WebDAV-%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%AE%89%E8%A3%85%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88rclone-%E5%8E%9F%E7%94%9F%E6%96%B9%E6%A1%88%EF%BC%89/" title="N1自建私有云部署-WebDAV-服务，安装全记录（rclone-原生方案）">N1自建私有云部署-WebDAV-服务，安装全记录（rclone-原生方案）</a><time datetime="2026-09-11T04:25:25.000Z" title="发表于 2026-09-11 12:25:25">2026-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/04/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8E%89%E7%BA%BF%EF%BC%8C%E9%87%8D%E6%96%B0%E6%89%AB%E7%A0%81%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4%EF%BC%8CN1-%E7%9B%92%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%A4%87%E5%BF%98%E5%BD%95/" title="机器人掉线，重新扫码操作步骤，N1盒子机器人故障处理备忘录">机器人掉线，重新扫码操作步骤，N1盒子机器人故障处理备忘录</a><time datetime="2026-09-04T12:08:44.000Z" title="发表于 2026-09-04 20:08:44">2026-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/02/N1%E6%90%AD%E5%BB%BA%E5%AE%88%E6%8A%A4%E7%8E%AF%E5%A2%83%E4%BB%A5%E5%8F%8A%E9%87%8D%E8%A3%85%20Armbian%20%E5%90%8E%E5%AE%8C%E6%95%B4%E6%81%A2%E5%A4%8D%E6%95%B4%E5%A5%97%E5%AE%88%E6%8A%A4%E7%8E%AF%E5%A2%83%EF%BC%8C%E6%B8%85%E7%90%86%E6%97%A5%E5%BF%97%E6%AD%A5%E9%AA%A4/" title="N1搭建守护环境以及重装 Armbian 后完整恢复整套守护环境，清理日志步骤">N1搭建守护环境以及重装 Armbian 后完整恢复整套守护环境，清理日志步骤</a><time datetime="2026-09-01T17:24:57.000Z" title="发表于 2026-09-02 01:24:57">2026-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/22/Butterfly%E4%B8%BB%E9%A2%985-7-%E6%B7%BB%E5%8A%A0-Live2D-%E7%9C%8B%E6%9D%BF%E5%A8%98/" title="Butterfly主题5.7 添加 Live2D 看板娘">Butterfly主题5.7 添加 Live2D 看板娘</a><time datetime="2026-08-21T16:45:13.000Z" title="发表于 2026-08-22 00:45:13">2026-08-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap" style="padding:20px 0;text-align:center;">   <div style="font-size:13px;margin-bottom:6px;">   <span id="timeDate" style="color:#fff;">载入天数...    </span><span id="times" style="color:#fff;">载入时分秒...    </span></div><div style="font-size:13px;">   <a href="javascript:void(0)" onclick="showQR()" style="color:#fff;">公众号    </a><i class="fa fa-heart" style="margin:0 2px;color:#ff6b81;font-size:10px;">   </i><a href="https://jq.qq.com/?_wv=1027&amp;k=Rvh2OGC8" target="_blank" rel="nofollow noopener">加入Q群    </a><i class="fa fa-heart" style="margin:0 2px;color:#ff6b81;font-size:10px;">   </i><span style="color:#fff;">   <span>访客     </span><span id="footer_site_uv">0    </span></span><i class="fa fa-heart" style="margin:0 2px;color:#ff6b81;font-size:10px;">   </i><span style="color:#fff;">   <span>访问     </span><span id="footer_site_pv">0    </span><span>次    </span></span></div><div style="font-size:13px;margin-top:6px;color:#fff;">   © 2022 - 2026 By 拾光者 &nbsp;|&nbsp;    <a href="https://2xboo.picp.vip/" target="_blank" rel="nofollow noopener" style="color:#fff;text-decoration:none;">不赶路，只感受路过的光  </a></div></div><div id="qr-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;cursor:pointer;" onclick="hideQR()">   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:20px;border-radius:10px;text-align:center;">   <img src="/img/gongzhonghao.png" style="max-width:250px;border-radius:5px;"/><p style="margin:10px 0 0;color:#333;font-size:14px;">扫码关注公众号    </p></div></div><script>var now = new Date();    
+function createtime() {    
+    var grt = new Date("03/13/2022 00:00:00");    
+    now.setTime(now.getTime() + 250);    
+    days = (now - grt) / 1000 / 60 / 60 / 24;    
+    dnum = Math.floor(days);    
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);    
+    hnum = Math.floor(hours);    
+    if (String(hnum).length == 1) { hnum = "0" + hnum; }    
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);    
+    mnum = Math.floor(minutes);    
+    if (String(mnum).length == 1) { mnum = "0" + mnum; }    
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);    
+    snum = Math.round(seconds);    
+    if (String(snum).length == 1) { snum = "0" + snum; }    
+    document.getElementById("timeDate").innerHTML = "已安全运行 " + dnum + " 天 ";    
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";    
+}    
+setInterval("createtime()", 250);    
+function showQR() {    
+  document.getElementById("qr-overlay").style.display = "block";    
+}    
+function hideQR() {    
+  document.getElementById("qr-overlay").style.display = "none";    
+}    
+function syncBusuanzi() {    
+  var uv = document.getElementById("busuanzi_value_site_uv");    
+  var pv = document.getElementById("busuanzi_value_site_pv");    
+  var fuv = document.getElementById("footer_site_uv");    
+  var fpv = document.getElementById("footer_site_pv");    
+  if (uv && fuv) fuv.innerHTML = uv.innerHTML;    
+  if (pv && fpv) fpv.innerHTML = pv.innerHTML;    
+}    
+setInterval(syncBusuanzi, 1000);  </script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="/js/texiao/love.js"></script><script src="/js/texiao/xiantiao.js"></script><script src="/js/texiao/dianjichuzi.js"></script><script src="/js/post-end.js"></script><script src="/js/glow-effects.js"></script><script defer src="/js/announcement-typewriter.js"></script><script src="/js/gear-custom-btn.js"></script><script src="/js/APlayer.min.js"></script><div id="global-aplayer"></div><div id="aplayer-toggle" title="音乐播放器">♪</div><script src="/js/music-player.js"></script><script src="/live2d-widget/autoload.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/click-show-text.min.js" data-mobile="true" data-text="随心,拾光,你好呀,慢一点,✨,光来了" data-fontsize="15px" data-random="true" async="async"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([data-fancybox])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      if (!item.parentNode) return
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || ''
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    const responseURL = e.request && e.request.responseURL
+    if (e.request && e.request.status === 404) {
+      false
+        ? pjax.loadUrl('/404.html')
+        : responseURL && (window.location.href = responseURL)
+    } else if (responseURL) {
+      window.location.href = responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
