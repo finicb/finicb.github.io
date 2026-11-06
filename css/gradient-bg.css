@@ -1,0 +1,49 @@
+/* ============================================
+ * 渐变背景配置
+ * 修改颜色只需改下面的 background 值
+ * ============================================ */
+
+/* ===== 方案一：静态渐变（已停用） =====
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+*/
+
+/* 确保主题背景层不覆盖渐变 */
+#web_bg {
+  background: none !important;
+}
+
+/* ===== 方案二：动态渐变（已停用） =====
+body {
+  background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #fddb92, #d1fdff);
+  background-size: 400% 400%;
+  animation: gradientBG 30s ease infinite;
+  background-attachment: fixed;
+}
+@keyframes gradientBG {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+*/
+
+/* ===== 淡蓝静态渐变（当前启用） ===== */
+body {
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* ===== 其他颜色方案（替换 body 的 background 即可） ===== */
+/*
+  日落橙红:  linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)
+  极光绿:    linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)
+  深海蓝:    linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)
+  樱花粉:    linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)
+  暗夜紫:    linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)
+  薄荷绿:    linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)
+  夕阳金:    linear-gradient(135deg, #f6d365 0%, #fda085 100%)
+*/

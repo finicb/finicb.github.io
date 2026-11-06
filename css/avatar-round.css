@@ -1,0 +1,38 @@
+/* ===============================
+   头像圆形修复（独立文件）
+   =============================== */
+
+/* 头像容器 */
+#aside-content .card-author,
+#aside-content .author-img,
+#aside-content .avatar,
+#aside-content .avatar-img {
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  transform: translateZ(0);
+}
+
+/* 头像图片 */
+#aside-content .card-author img,
+#aside-content .author-img img,
+#aside-content .avatar img,
+#aside-content .avatar-img img {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* 防止 card-widget 的圆角裁切头像 */
+#aside-content .card-widget.card-author {
+  overflow: visible !important;
+}
+
+/* 深色模式兼容 */
+[data-theme="dark"] #aside-content .card-author img,
+[data-theme="dark"] #aside-content .author-img img,
+[data-theme="dark"] #aside-content .avatar img,
+[data-theme="dark"] #aside-content .avatar-img img {
+  border-radius: 50% !important;
+}

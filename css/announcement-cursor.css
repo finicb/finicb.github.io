@@ -79,8 +79,10 @@
 @media (max-width: 768px) {
   #subtitle::after,
   .site-subtitle::after,
-  .typed-element::after {
+  .typed-element::after,
+  #announcement-typed::after {   /* ✅ 关键：把公告栏也拉进来 */
     width: 1.5px;
-    height: 0.9em;
+    height: 1.16em;              /* ✅ 原来是 0.9em，调高 */
+    top: 0.02em;                 /* ✅ 稍微下沉，对齐文字 */
   }
 }
